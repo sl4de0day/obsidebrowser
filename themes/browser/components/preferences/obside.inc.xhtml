@@ -1,0 +1,377 @@
+<script src="chrome://browser/content/preferences/obsideL10n.js"/>
+<script src="chrome://browser/content/preferences/librewolf.js"/>
+
+<html:template id="template-paneObsideAccount">
+<hbox class="subcategory" hidden="true" data-category="paneObsideAccount">
+  <html:h1 id="obside-account-title">Obside Account</html:h1>
+</hbox>
+<groupbox data-category="paneObsideAccount" hidden="true">
+  <label class="search-header" hidden="true"><html:h2 id="obside-account-search-hdr">Obside Account</html:h2></label>
+  <vbox align="start" style="padding-top: 10px;">
+    <vbox id="obside-user-details-container" style="margin-bottom: 16px;" hidden="true">
+      <vbox id="obside-nickname-row" hidden="true" style="margin-bottom: 12px;">
+        <label id="obside-title-nickname" style="font-weight: 600; font-size: 1.1em; color: var(--in-content-text-color); margin-bottom: 2px;">Nickname</label>
+        <label id="obside-val-nickname" style="color: var(--in-content-deemphasized-text); font-size: 1.0em;"></label>
+      </vbox>
+      <vbox style="margin-bottom: 12px;">
+        <label id="obside-title-name" style="font-weight: 600; font-size: 1.1em; color: var(--in-content-text-color); margin-bottom: 2px;">Full Name</label>
+        <label id="obside-val-name" style="color: var(--in-content-deemphasized-text); font-size: 1.0em;"></label>
+      </vbox>
+      <vbox style="margin-bottom: 12px;">
+        <label id="obside-title-email" style="font-weight: 600; font-size: 1.1em; color: var(--in-content-text-color); margin-bottom: 2px;">Email</label>
+        <label id="obside-val-email" style="color: var(--in-content-deemphasized-text); font-size: 1.0em;"></label>
+      </vbox>
+      <vbox style="margin-bottom: 12px;">
+        <label id="obside-title-type" style="font-weight: 600; font-size: 1.1em; color: var(--in-content-text-color); margin-bottom: 2px;">Account Type</label>
+        <label id="obside-val-type" style="font-weight: 500; font-size: 1.0em;"></label>
+      </vbox>
+      <!-- OBSIDE: premium license details (plan · days left · end date · masked key),
+           shown only for active premium accounts; populated in updateLoginUI. -->
+      <vbox id="obside-premium-details" style="display: none;">
+        <label id="obside-premium-source-line" hidden="true" style="font-weight: 600; font-size: 1.0em; color: var(--in-content-text-color); margin-bottom: 2px;"></label>
+        <label id="obside-premium-plan-line" style="font-weight: 500; font-size: 1.0em; color: var(--in-content-text-color);"></label>
+        <label id="obside-premium-key-line" hidden="true" style="color: var(--in-content-deemphasized-text); font-size: 0.95em; margin-top: 4px;"></label>
+        <label id="obside-manage-sub-link" class="text-link" hidden="true" style="margin-top: 6px;" href="https://app.gumroad.com/library"></label>
+      </vbox>
+    </vbox>
+    <description id="obside-account-desc" style="color: var(--in-content-deemphasized-text); margin-bottom: 16px;">Log in to activate Obside Premium features in your browser.</description>
+    <hbox align="center" style="display: flex; align-items: center;">
+      <button id="obside-login-btn" is="highlightable-button" class="accessory-button" style="display: flex; align-items: center; margin-inline-end: 15px;">
+        <image class="librewolf-button-icon" src="chrome://browser/skin/preferences/category-sync.svg" />
+        <label id="obside-login-btn-label" value="Log In" style="cursor: pointer; font-weight: 500; margin: 0;"></label>
+      </button>
+      <button id="obside-buy-premium-btn" is="highlightable-button" class="accessory-button" style="display: none; align-items: center; margin-inline-end: 15px;">
+        <label id="obside-buy-premium-btn-label" value="Buy Premium" style="cursor: pointer; font-weight: 500; margin: 0;"></label>
+      </button>
+      <label id="obside-login-status" value="Not logged in" style="font-weight: 500; font-size: 1.15em; align-self: center;" />
+    </hbox>
+    <!-- OBSIDE: license-key entry, shown only for logged-in STANDARD (non-premium)
+         accounts (toggled in librewolf.js next to the Buy Premium button). Currently
+         non-functional (no activation handler wired yet). -->
+    <vbox id="obside-license-key-box" style="display: none; margin-top: 16px; max-width: 440px;">
+      <label id="obside-license-key-label" style="font-weight: 500; margin-bottom: 6px; color: var(--in-content-text-color);">Enter License Key</label>
+      <hbox align="center">
+        <html:input id="obside-license-key-input" type="text" placeholder="XXXX-XXXX-XXXX-XXXX"
+                    style="flex: 1; margin-inline-end: 10px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--in-content-border-color); background: var(--in-content-box-background); color: var(--in-content-text-color);" />
+        <button id="obside-license-key-btn" is="highlightable-button" class="accessory-button" style="align-items: center;">
+          <label id="obside-license-key-btn-label" value="Activate" style="cursor: pointer; font-weight: 500; margin: 0;"></label>
+        </button>
+      </hbox>
+      <label id="obside-license-key-result" hidden="true" style="margin-top: 8px; font-weight: 500; font-size: 1.0em;"></label>
+      <label id="obside-license-key-renew" class="text-link" hidden="true" style="margin-top: 6px;" href="https://obside.gumroad.com/l/premium">Renew</label>
+    </vbox>
+  </vbox>
+</groupbox>
+</html:template>
+
+<html:template id="template-paneObsideSecurity">
+<hbox class="subcategory" hidden="true" data-category="paneObsideSecurity">
+  <html:h1 id="obside-security-title">Obside Download Security</html:h1>
+</hbox>
+<groupbox data-category="paneObsideSecurity" hidden="true">
+  <label class="search-header" hidden="true"><html:h2 id="obside-security-search-hdr">Obside Download Security</html:h2></label>
+
+  <description id="obside-security-desc" style="color: var(--in-content-deemphasized-text); margin-bottom: 16px;"></description>
+
+  <vbox id="obside-security-premium-content">
+    <vbox id="obside-security-options" style="margin-bottom: 20px;">
+      <hbox align="center" style="margin-bottom: 12px;">
+        <checkbox id="obside-security-auto-scan" preference="obside.security.auto_scan" />
+      </hbox>
+      <hbox align="center" style="margin-bottom: 16px;">
+        <label id="obside-security-lbl-threat-action" control="obside-security-threat-action" style="margin-inline-end: 10px;">Action on Threat Detection</label>
+        <menulist id="obside-security-threat-action" preference="obside.security.threat_action">
+          <menupopup>
+            <menuitem value="0" label="Warn &amp; Ask" />
+            <menuitem value="1" label="Block &amp; Quarantine" />
+            <menuitem value="2" label="Delete Automatically" />
+          </menupopup>
+        </menulist>
+      </hbox>
+    </vbox>
+
+    <label><html:h2 id="obside-security-sec-manual" style="margin-bottom: 8px;">Manual Scanner</html:h2></label>
+    <vbox align="start" style="padding-top: 5px; margin-bottom: 24px;">
+      <html:style>
+        @keyframes obsideSpin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        .obside-spinner {
+          display: none;
+          border: 3px solid rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+          border-top: 3px solid var(--in-content-accent-color, #0060df);
+          width: 20px;
+          height: 20px;
+          animation: obsideSpin 1s linear infinite;
+          margin-inline-start: 15px;
+        }
+        .obside-history-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+          background-color: var(--in-content-box-background, #1c1b22);
+          border-radius: 4px;
+          overflow: hidden;
+        }
+        .obside-history-table th {
+          background-color: var(--in-content-button-background, #2b2a33);
+          color: var(--in-content-text-color);
+          font-weight: 600;
+          text-align: left;
+          padding: 8px 12px;
+          font-size: 0.9em;
+          border-bottom: 1px solid var(--in-content-border-color, #3f3f46);
+        }
+        .obside-history-table td {
+          padding: 8px 12px;
+          font-size: 0.9em;
+          border-bottom: 1px solid var(--in-content-border-color, #27272a);
+          color: var(--in-content-text-color);
+        }
+        .obside-history-table tr:last-child td {
+          border-bottom: none;
+        }
+        .obside-history-table tr:hover {
+          background-color: rgba(255, 255, 255, 0.03);
+        }
+        .risk-safe {
+          color: #10b981;
+          font-weight: 600;
+        }
+        .risk-suspicious {
+          color: #f97316;
+          font-weight: 600;
+        }
+        .risk-dangerous {
+          color: #ef4444;
+          font-weight: 600;
+        }
+      </html:style>
+      <hbox align="center" style="display: flex; align-items: center;">
+        <button id="obside-scan-btn" is="highlightable-button" class="accessory-button" style="display: flex; align-items: center; margin-inline-end: 15px;">
+          <label id="obside-scan-btn-label" value="Scan File" style="cursor: pointer; font-weight: 500; margin: 0;"></label>
+        </button>
+        <html:div id="obside-scan-spinner" class="obside-spinner"></html:div>
+        <label id="obside-scan-result" style="font-weight: 500; font-size: 1.1em; align-self: center;" />
+      </hbox>
+    </vbox>
+
+    <label><html:h2 id="obside-security-sec-history" style="margin-bottom: 8px;">Scan History Log</html:h2></label>
+    <vbox style="margin-top: 10px;">
+      <html:table class="obside-history-table">
+        <html:thead>
+          <html:tr>
+            <html:th id="obside-hist-col-file">File Name</html:th>
+            <html:th id="obside-hist-col-date">Date</html:th>
+            <html:th id="obside-hist-col-result">Result</html:th>
+            <html:th id="obside-hist-col-details">Details</html:th>
+          </html:tr>
+        </html:thead>
+        <html:tbody id="obside-security-history-tbody">
+        </html:tbody>
+      </html:table>
+      <hbox pack="end" style="margin-top: 8px;">
+        <button id="obside-clear-history-btn" class="accessory-button">
+          <label id="obside-clear-history-label" value="Clear Log" style="cursor: pointer; font-weight: 500; margin: 0;"></label>
+        </button>
+      </hbox>
+    </vbox>
+  </vbox>
+</groupbox>
+</html:template>
+
+<html:template id="template-paneObsideFetch">
+<hbox class="subcategory" hidden="true" data-category="paneObsideFetch">
+  <html:h1 id="obside-hyperfetch-title">Obside Hyper Fetch</html:h1>
+</hbox>
+<groupbox data-category="paneObsideFetch" hidden="true">
+  <label class="search-header" hidden="true"><html:h2 id="obside-fetch-search-hdr">Obside Hyper Fetch</html:h2></label>
+  
+  <description id="obside-hyperfetch-desc" class="description-deemphasized">
+    Enable multi-connection download acceleration utilizing background download daemon.
+  </description>
+
+  <hbox align="center" style="margin-top: 12px; margin-bottom: 12px;">
+    <checkbox id="obside-hyperfetch-enabled" preference="obside.hyperfetch.enabled" />
+  </hbox>
+
+  <vbox id="obside-hyperfetch-options-container" style="margin-top: 10px;">
+    <label><html:h2 id="obside-hyperfetch-sec-general">General Settings</html:h2></label>
+    
+    <hbox align="center" style="margin-bottom: 12px;">
+      <label id="obside-hyperfetch-lbl-threads" control="obside-hyperfetch-threads" style="margin-inline-end: 10px;">Threads per Download</label>
+      <menulist id="obside-hyperfetch-threads" preference="obside.hyperfetch.threads">
+        <menupopup>
+          <menuitem value="2" label="2" />
+          <menuitem value="4" label="4" />
+          <menuitem value="8" label="8" />
+          <menuitem value="16" label="16" />
+        </menupopup>
+      </menulist>
+    </hbox>
+
+    <hbox align="center" style="margin-bottom: 12px;">
+      <label id="obside-hyperfetch-lbl-max-downloads" control="obside-hyperfetch-max-downloads" style="margin-inline-end: 10px;">Maximum Concurrent Downloads</label>
+      <html:input type="number" id="obside-hyperfetch-max-downloads" preference="obside.hyperfetch.max_downloads" style="width: 80px;" min="1" max="10" />
+    </hbox>
+
+    <hbox align="center" style="margin-bottom: 8px;">
+      <checkbox id="obside-hyperfetch-speed-limit-enabled" preference="obside.hyperfetch.speed_limit_enabled" />
+    </hbox>
+    <hbox align="center" style="margin-bottom: 16px; margin-inline-start: 24px;">
+      <label id="obside-hyperfetch-lbl-speed-limit-val" control="obside-hyperfetch-speed-limit-val" style="margin-inline-end: 10px;">Max download speed (KB/s)</label>
+      <html:input type="number" id="obside-hyperfetch-speed-limit-val" preference="obside.hyperfetch.speed_limit_value" style="width: 100px;" min="50" step="50" />
+    </hbox>
+
+    <label><html:h2 id="obside-hyperfetch-sec-advanced" style="margin-top: 12px; margin-bottom: 8px;">Advanced Settings</html:h2></label>
+    <hbox align="center" style="margin-bottom: 12px;">
+      <checkbox id="obside-hyperfetch-show-advanced" preference="obside.hyperfetch.show_advanced" />
+    </hbox>
+
+    <vbox id="obside-hyperfetch-advanced-container" style="margin-inline-start: 20px;">
+      <hbox align="center" style="margin-bottom: 12px;">
+        <label id="obside-hyperfetch-lbl-min-split" control="obside-hyperfetch-min-split" style="margin-inline-end: 10px;">Minimum Split Size</label>
+        <menulist id="obside-hyperfetch-min-split" preference="obside.hyperfetch.min_split_size">
+          <menupopup>
+            <menuitem value="1M" label="1 MB" />
+            <menuitem value="5M" label="5 MB" />
+            <menuitem value="10M" label="10 MB" />
+            <menuitem value="20M" label="20 MB" />
+            <menuitem value="50M" label="50 MB" />
+          </menupopup>
+        </menulist>
+      </hbox>
+
+      <hbox align="center" style="margin-bottom: 12px;">
+        <label id="obside-hyperfetch-lbl-ram-buffer" control="obside-hyperfetch-ram-buffer" style="margin-inline-end: 10px;">RAM Buffer Size</label>
+        <menulist id="obside-hyperfetch-ram-buffer" preference="obside.hyperfetch.ram_buffer">
+          <menupopup>
+            <menuitem value="0" label="Disabled" />
+            <menuitem value="16M" label="16 MB" />
+            <menuitem value="32M" label="32 MB" />
+            <menuitem value="64M" label="64 MB" />
+            <menuitem value="128M" label="128 MB" />
+          </menupopup>
+        </menulist>
+      </hbox>
+
+      <vbox align="start" style="margin-bottom: 12px;">
+        <label id="obside-hyperfetch-lbl-user-agent" control="obside-hyperfetch-user-agent" style="margin-bottom: 4px;">Custom User Agent</label>
+        <html:input type="text" id="obside-hyperfetch-user-agent" preference="obside.hyperfetch.user_agent" style="width: 400px;" />
+      </vbox>
+    </vbox>
+  </vbox>
+</groupbox>
+</html:template>
+
+<html:template id="template-paneObsideResources">
+<hbox class="subcategory" hidden="true" data-category="paneObsideResources">
+  <html:h1 id="obside-resources-title">Obside Smart Resources</html:h1>
+</hbox>
+<groupbox data-category="paneObsideResources" hidden="true">
+  <label class="search-header" hidden="true"><html:h2 id="obside-resources-search-hdr">Obside Smart Resources</html:h2></label>
+  <label><html:h2 id="obside-res-sec-general">General Settings</html:h2></label>
+  <description id="obside-resources-desc" class="description-deemphasized">
+    Enable intelligent memory management by automatically suspending inactive background tabs.
+  </description>
+
+  <hbox align="center" style="margin-top: 12px; margin-bottom: 12px;">
+    <checkbox id="obside-resources-enabled" preference="obside.resource.enabled" />
+  </hbox>
+
+  <vbox id="obside-resources-options-container">
+    <hbox align="center" style="margin-bottom: 8px;">
+      <label id="obside-res-lbl-period" control="obside-resources-period" style="margin-inline-end: 10px;">Tab Suspend Timeout</label>
+      <menulist id="obside-resources-period" preference="obside.resource.period">
+        <menupopup>
+          <menuitem value="60" label="1 Minute" />
+          <menuitem value="300" label="5 Minutes" />
+          <menuitem value="600" label="10 Minutes" />
+          <menuitem value="1800" label="30 Minutes" />
+          <menuitem value="3600" label="1 Hour" />
+          <menuitem value="7200" label="2 Hours" />
+          <menuitem value="21600" label="6 Hours" />
+        </menupopup>
+      </menulist>
+    </hbox>
+    <hbox align="center" style="margin-bottom: 16px;">
+      <label id="obside-res-lbl-number" control="obside-resources-number" style="margin-inline-end: 10px;">Minimum Tab Limit</label>
+      <html:input type="number" id="obside-resources-number" preference="obside.resource.number" style="width: 80px;" />
+    </hbox>
+
+    <label><html:h2 id="obside-res-sec-memory" style="margin-top: 12px; margin-bottom: 8px;">Memory Threshold</html:h2></label>
+    <hbox align="center" style="margin-bottom: 8px;">
+      <checkbox id="obside-resources-memory-enabled" preference="obside.resource.memory_enabled" />
+    </hbox>
+    <hbox align="center" style="margin-bottom: 16px;">
+      <label id="obside-res-lbl-memory-value" control="obside-resources-memory-value" style="margin-inline-end: 10px;">Suspend if tab memory exceeds (MB)</label>
+      <html:input type="number" id="obside-resources-memory-value" preference="obside.resource.memory_value" style="width: 80px;" />
+    </hbox>
+
+    <label><html:h2 id="obside-res-sec-conditions" style="margin-top: 12px; margin-bottom: 8px;">Protection Conditions</html:h2></label>
+    <hbox align="center" style="margin-bottom: 8px;">
+      <checkbox id="obside-resources-audio" preference="obside.resource.audio" />
+    </hbox>
+    <hbox align="center" style="margin-bottom: 8px;">
+      <checkbox id="obside-resources-pinned" preference="obside.resource.pinned" />
+    </hbox>
+    <hbox align="center" style="margin-bottom: 8px;">
+      <checkbox id="obside-resources-form" preference="obside.resource.form" />
+    </hbox>
+    <hbox align="center" style="margin-bottom: 8px;">
+      <checkbox id="obside-resources-battery" preference="obside.resource.battery" />
+    </hbox>
+    <hbox align="center" style="margin-bottom: 16px;">
+      <checkbox id="obside-resources-online" preference="obside.resource.online" />
+    </hbox>
+
+    <label><html:h2 id="obside-res-sec-startup" style="margin-top: 12px; margin-bottom: 8px;">Startup Behavior</html:h2></label>
+    <hbox align="center" style="margin-bottom: 8px;">
+      <checkbox id="obside-resources-startup-unpinned" preference="obside.resource.startup_unpinned" />
+    </hbox>
+    <hbox align="center" style="margin-bottom: 8px;">
+      <checkbox id="obside-resources-startup-pinned" preference="obside.resource.startup_pinned" />
+    </hbox>
+    <hbox align="center" style="margin-bottom: 16px;">
+      <checkbox id="obside-resources-startup-release-pinned" preference="obside.resource.startup_release_pinned" />
+    </hbox>
+
+    <label><html:h2 id="obside-res-sec-whitelist" style="margin-top: 12px; margin-bottom: 8px;">Exceptions / Whitelist</html:h2></label>
+    <description id="obside-res-lbl-whitelist-desc" style="color: var(--in-content-deemphasized-text); margin-bottom: 8px;">
+      Enter hostnames or regex rules (one per line) to prevent them from being suspended:
+    </description>
+    <html:textarea id="obside-resources-whitelist" style="width: 100%; height: 100px;" />
+  </vbox>
+</groupbox>
+</html:template>
+<html:template id="template-paneObsideE2EE">
+<hbox class="subcategory" hidden="true" data-category="paneObsideE2EE">
+  <html:h1 id="obside-e2ee-title">E2EE Chat Room</html:h1>
+</hbox>
+<groupbox data-category="paneObsideE2EE" hidden="true">
+  <label class="search-header" hidden="true"><html:h2 id="obside-e2ee-search-hdr">E2EE</html:h2></label>
+  <vbox align="start" style="padding-top: 10px;">
+    <description id="obside-e2ee-locked-desc" hidden="true" style="color: var(--in-content-deemphasized-text); margin-bottom: 16px;"></description>
+    <!-- TEMPORARY: maintenance notice shown to standard (non-premium) accounts; text set from librewolf.js. Remove with the matching block in _applyAuthUI(). -->
+    <description id="obside-e2ee-maint" hidden="true" style="margin-bottom: 16px; padding: 12px 14px; border: 1px solid #6366f1; border-inline-start: 3px solid #818cf8; border-radius: 6px; background-color: rgba(99,102,241,0.08); color: var(--in-content-text-color);"></description>
+    <description id="obside-e2ee-desc" style="color: var(--in-content-deemphasized-text); margin-bottom: 16px;">Join an existing room or create a new one to start a private, end-to-end encrypted chat.</description>
+    <vbox id="obside-e2ee-setup">
+      <hbox align="center" style="margin-bottom: 12px;">
+        <html:input type="text" id="obside-e2ee-room-input" placeholder="Enter Room ID to join..."
+          style="flex: 1; padding: 6px 10px; border: 1px solid var(--in-content-box-border-color); border-radius: 4px; background-color: var(--in-content-box-background); color: var(--in-content-text-color);" />
+        <button id="obside-e2ee-btn-join" is="highlightable-button" class="accessory-button" style="margin-inline-start: 12px;">
+          <label id="obside-e2ee-btn-join-label" value="Join Room" style="cursor: pointer; font-weight: 500; margin: 0;" />
+        </button>
+      </hbox>
+      <hbox align="center">
+        <button id="obside-e2ee-btn-create" is="highlightable-button" class="accessory-button" style="display: flex; align-items: center;">
+          <image class="librewolf-button-icon" src="chrome://browser/skin/preferences/category-sync.svg" />
+          <label id="obside-e2ee-btn-create-label" value="Create New Room" style="cursor: pointer; font-weight: 500; margin: 0;" />
+        </button>
+      </hbox>
+    </vbox>
+  </vbox>
+</groupbox>
+</html:template>

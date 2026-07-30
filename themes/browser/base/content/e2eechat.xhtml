@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html:html xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           xmlns:html="http://www.w3.org/1999/xhtml">
+  <html:head>
+    <html:meta charset="utf-8"/>
+    <!-- Obside security fix (C24): add a Content-Security-Policy to this privileged
+         chrome-bridge document. script-src is locked to chrome:, so no remote or inline
+         script can execute here (the real XSS risk on a page that holds the E2EE bridge).
+         connect/media/img are left broad so WebRTC (relay wss + dynamic TURN) and file
+         transfers keep working; object-src/base-uri are locked down. -->
+    <html:meta http-equiv="Content-Security-Policy"
+               content="default-src chrome: data: blob: https: wss: 'unsafe-inline'; script-src chrome:; object-src 'none'; base-uri 'none';"/>
+    <html:title>Obside E2EE Chat Room</html:title>
+    <html:link rel="stylesheet" href="chrome://browser/content/e2eeroom.css"/>
+  </html:head>
+  <html:body>
+    <html:div id="root"></html:div>
+    <html:script src="chrome://browser/content/e2eeroom.js"></html:script>
+  </html:body>
+</html:html>

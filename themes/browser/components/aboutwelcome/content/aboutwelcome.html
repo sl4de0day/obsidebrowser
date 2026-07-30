@@ -1,0 +1,48 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Obside security fix (C24): CSP for the privileged about:welcome document, which
+         brokers the account token / email / license via the AboutWelcome actor bridge.
+         script-src is locked to chrome: (no remote/inline script execution); connect/img
+         stay broad for account API calls and avatars. Pairs with the sender-principal
+         check added in AboutWelcomeParent.sys.mjs. -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src chrome: data: blob: https: 'unsafe-inline'; script-src chrome:; object-src 'none'; base-uri 'none';" />
+    <meta name="color-scheme" content="dark" />
+    <title>Welcome to Obside</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="chrome://branding/content/icon32.png"
+    />
+
+    <link rel="localization" href="branding/brand.ftl" />
+    <link rel="localization" href="browser/migrationWizard.ftl" />
+
+    <script src="chrome://global/content/customElements.js"></script>
+    <script src="chrome://global/content/elements/named-deck.js" async></script>
+    <script src="chrome://global/content/elements/panel-list.js" async></script>
+    <script
+      src="chrome://browser/content/migration/migration-wizard-constants.mjs"
+      type="module"
+    ></script>
+    <script
+      src="chrome://browser/content/migration/migration-wizard.mjs"
+      type="module"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="chrome://browser/content/aboutwelcome/obside-welcome.css"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="chrome://browser/content/aboutwelcome/obside-welcome.js"></script>
+  </body>
+</html>

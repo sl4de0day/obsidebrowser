@@ -1,0 +1,203 @@
+diff --git a/browser/components/preferences/main.js b/browser/components/preferences/main.js
+index 8f8da3c..fef63b1 100644
+--- a/browser/components/preferences/main.js
++++ b/browser/components/preferences/main.js
+@@ -3771,34 +3771,6 @@ SettingGroupManager.registerGroups({
+     l10nId: "history-group",
+     headingLevel: 2,
+     items: [
+-      {
+-        id: "historyMode",
+-        control: "moz-select",
+-        options: [
+-          {
+-            value: "remember",
+-            l10nId: "history-remember-option-all2",
+-          },
+-          { value: "dontremember", l10nId: "history-remember-option-never2" },
+-          { value: "custom", l10nId: "history-remember-option-custom2" },
+-        ],
+-        controlAttrs: {
+-          "search-l10n-ids": `
+-            history-remember-description4,
+-            history-dontremember-description4,
+-            history-custom-description4,
+-            history-private-browsing-permanent.label,
+-            history-remember-browser-option.label,
+-            history-remember-search-option.label,
+-            history-clear-on-close-option.label,
+-            history-clear-on-close-settings.label
+-          `,
+-        },
+-      },
+-      {
+-        id: "privateBrowsingAutoStart",
+-        l10nId: "history-private-browsing-permanent",
+-      },
+       {
+         id: "rememberHistory",
+         l10nId: "history-remember-browser-option",
+@@ -5092,39 +5064,6 @@ SettingGroupManager.registerGroups({
+             l10nId: "addressbar-locbar-quickactions-option",
+             supportPage: "quick-actions-firefox-search-bar",
+           },
+-          {
+-            id: "firefoxSuggestAll",
+-            l10nId: "addressbar-locbar-suggest-all-option-2",
+-            items: [
+-              {
+-                id: "firefoxSuggestSponsored",
+-                l10nId: "addressbar-locbar-suggest-sponsored-option-2",
+-              },
+-              {
+-                id: "firefoxSuggestOnlineEnabledToggle",
+-                l10nId: "addressbar-firefox-suggest-online",
+-                supportPage: "firefox-suggest",
+-                subcategory: "w_what-is-firefox-suggest",
+-              },
+-            ],
+-          },
+-          {
+-            id: "dismissedSuggestionsDescription",
+-            l10nId: "addressbar-dismissed-suggestions-label-2",
+-            control: "moz-fieldset",
+-            controlAttrs: {
+-              headinglevel: 3,
+-            },
+-            items: [
+-              {
+-                id: "restoreDismissedSuggestions",
+-                l10nId: "addressbar-restore-dismissed-suggestions-button-2",
+-                control: "moz-button",
+-                iconSrc:
+-                  "chrome://global/skin/icons/arrow-counterclockwise-16.svg",
+-              },
+-            ],
+-          },
+         ],
+       },
+     ],
+diff --git a/browser/components/preferences/privacy.inc.xhtml b/browser/components/preferences/privacy.inc.xhtml
+index 4a4759e925..eefd978cfc 100644
+--- a/browser/components/preferences/privacy.inc.xhtml
++++ b/browser/components/preferences/privacy.inc.xhtml
+@@ -49,20 +49,6 @@
+                 permissions-exceptions-manage-etp-desc,
+               "/>
+     </hbox>
+-    <hbox id="rfpIncompatibilityWarning" class="info-box-container" hidden="true">
+-      <vbox class="info-icon-container">
+-        <html:img class="info-icon"></html:img>
+-      </vbox>
+-      <vbox flex="1">
+-        <description>
+-          <html:span data-l10n-id="content-blocking-rfp-incompatibility-warning"/>
+-          <html:a is="moz-support-link"
+-                  class="learnMore"
+-                  support-page="resist-fingerprinting"
+-          />
+-        </description>
+-      </vbox>
+-    </hbox>
+     <hbox id="fpiIncompatibilityWarning" class="info-box-container" hidden="true">
+       <vbox class="info-icon-container">
+         <html:img class="info-icon"></html:img>
+@@ -77,7 +63,7 @@
+       <radiogroup id="contentBlockingCategoryRadio"
+                   preference="browser.contentblocking.category"
+                   aria-labelledby="trackingProtectionMenuDesc">
+-        <vbox id="contentBlockingOptionStandard" class="privacy-detailedoption info-box-container">
++        <vbox id="contentBlockingOptionStandard" class="privacy-detailedoption info-box-container" hidden="true">
+           <hbox>
+             <radio id="standardRadio"
+                    value="standard"
+@@ -242,7 +228,7 @@
+                         is="highlightable-button"
+                         data-l10n-id="content-blocking-reload-tabs-button"/>
+               </html:div>
+-              <vbox class="content-blocking-warning info-box-container">
++              <vbox class="content-blocking-warning info-box-container" hidden="true">
+                 <hbox>
+                   <image class="content-blocking-warning-image"/>
+                   <label class="content-blocking-warning-title" data-l10n-id="content-blocking-warning-title-2"/>
+@@ -258,7 +244,7 @@
+             </vbox>
+           </vbox>
+         </vbox>
+-        <vbox id="contentBlockingOptionCustom" class="privacy-detailedoption info-box-container">
++        <vbox id="contentBlockingOptionCustom" class="privacy-detailedoption info-box-container" hidden="true">
+           <hbox>
+             <radio id="customRadio"
+                    value="custom"
+@@ -391,6 +377,20 @@
+         </vbox>
+       </radiogroup>
+     </vbox>
++    <hbox id="rfpIncompatibilityWarning" class="info-box-container" hidden="true">
++      <vbox class="info-icon-container">
++        <html:img class="info-icon"></html:img>
++      </vbox>
++      <vbox flex="1">
++        <description>
++          <html:span data-l10n-id="content-blocking-rfp-incompatibility-warning"/>
++          <html:a is="moz-support-link"
++                  class="learnMore"
++                  support-page="resist-fingerprinting"
++          />
++        </description>
++      </vbox>
++    </hbox>
+   </vbox>
+ </groupbox>
+ <html:setting-group id="nonTechnicalPrivacyGroup" groupid="nonTechnicalPrivacy" data-category="panePrivacy" hidden="true" data-srd-groupid="nonTechnicalPrivacy2"/>
+diff --git a/browser/components/preferences/privacy.js b/browser/components/preferences/privacy.js
+index cb84b9206a..beb8e08cba 100644
+--- a/browser/components/preferences/privacy.js
++++ b/browser/components/preferences/privacy.js
+@@ -3428,7 +3428,7 @@ var gPrivacyPane = {
+     initSettingGroup("securityPrivacyStatus");
+     initSettingGroup("securityPrivacyWarnings");
+     initSettingGroup("httpsOnly");
+-    initSettingGroup("browsingProtection");
++    //initSettingGroup("browsingProtection");
+     initSettingGroup("cookiesAndSiteData");
+     initSettingGroup("cookiesAndSiteData2");
+     initSettingGroup("certificates");
+diff --git a/browser/locales/en-US/browser/preferences/preferences.ftl b/browser/locales/en-US/browser/preferences/preferences.ftl
+index 5091571fa6..3a008ecd66 100644
+--- a/browser/locales/en-US/browser/preferences/preferences.ftl
++++ b/browser/locales/en-US/browser/preferences/preferences.ftl
+@@ -1830,8 +1830,6 @@ cookie-banner-blocker-checkbox-label =
+ 
+ content-blocking-enhanced-tracking-protection = Enhanced Tracking Protection
+ 
+-content-blocking-section-top-level-description = Trackers follow you around online to collect information about your browsing habits and interests. { -brand-short-name } blocks many of these trackers and other malicious scripts.
+-
+ content-blocking-learn-more = Learn more
+ 
+ content-blocking-fpi-incompatibility-warning = You are using First Party Isolation (FPI), which overrides some of { -brand-short-name }’s cookie settings.
+diff --git a/browser/themes/shared/preferences/privacy.css b/browser/themes/shared/preferences/privacy.css
+index 1cfe9a9eef..d18112d234 100644
+--- a/browser/themes/shared/preferences/privacy.css
++++ b/browser/themes/shared/preferences/privacy.css
+@@ -221,7 +221,7 @@
+ }
+ 
+ .extra-information-label {
+-  margin-top: 18px;
++  margin-top: 5px;
+ }
+ 
+ /* Apply display: block to the containers of all the category information, as
+@@ -257,9 +257,8 @@
+ }
+ 
+ .content-blocking-extra-blocking-desc {
+-  margin-inline-start: 0.5em;
+-  position: relative;
+-  top: 0.65em;
++  margin-top: 1em;
++  margin-bottom: 0.5em;
+ }
+ 
+ .content-blocking-label,

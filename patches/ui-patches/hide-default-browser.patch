@@ -1,0 +1,44 @@
+diff --git a/browser/components/preferences/main.inc.xhtml b/browser/components/preferences/main.inc.xhtml
+--- a/browser/components/preferences/main.inc.xhtml
++++ b/browser/components/preferences/main.inc.xhtml
+@@ -21,9 +21,6 @@
+   <html:h1 data-l10n-id="pane-general-title"/>
+ </hbox>
+ 
+-<!-- Default browser -->
+-<html:setting-group groupid="defaultBrowser" data-category="paneGeneral" hidden="true" />
+-
+ <!-- Startup -->
+ <html:setting-group id="startupGroup" groupid="startup" data-category="paneGeneral" hidden="true"/>
+ 
+diff --git a/browser/components/preferences/main.js b/browser/components/preferences/main.js
+index 8f8da3c..c45acc3 100644
+--- a/browser/components/preferences/main.js
++++ b/browser/components/preferences/main.js
+@@ -2688,10 +2688,6 @@ function createStartupConfig(hidden = false) {
+         control: "moz-message-bar",
+         l10nId: "startup-windows-launch-on-login-profile-disabled",
+       },
+-      {
+-        id: "alwaysCheckDefault",
+-        l10nId: "always-check-default",
+-      },
+     ],
+   };
+ }
+@@ -2753,7 +2749,6 @@ SettingGroupManager.registerGroups({
+       },
+     ],
+   },
+-  defaultBrowser: createDefaultBrowserConfig(),
+   startup: createStartupConfig(
+     Services.prefs.getBoolPref("browser.settings-redesign.enabled", false)
+   ),
+@@ -5227,7 +5222,6 @@ var gMainPane = {
+     initSettingGroup("translations");
+     initSettingGroup("spellCheck");
+     initSettingGroup("performance");
+-    initSettingGroup("defaultBrowser");
+     initSettingGroup("startup");
+     initSettingGroup("importBrowserData");
+     initSettingGroup("networkProxy");

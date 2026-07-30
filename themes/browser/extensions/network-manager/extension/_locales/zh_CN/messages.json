@@ -1,0 +1,147 @@
+{
+  "extensionName": { "message": "FoxyProxy" },
+  "extensionNameBasic": { "message": "FoxyProxy 基础版" },
+  "extensionDescription": { "message": "简单易用的高级代理管理工具，适合所有用户" },
+
+  "proxyByPatterns": { "message": "按规则代理" },
+  "disable": { "message": "禁用" },
+  "more": { "message": "更多" },
+  "tabProxy": { "message": "标签页代理" },
+  "containerProxy": { "message": "容器代理" },
+  "includeHost": { "message": "包含主机" },
+  "excludeHost": { "message": "排除主机" },
+  "ip": { "message": "IP" },
+  "location": { "message": "位置" },
+
+  "setTabProxy": { "message": "设置标签页代理" },
+  "unsetTabProxy": { "message": "取消标签页代理" },
+  "openLinkTabProxy": { "message": "使用新的代理标签页打开链接" },
+
+  "incognitoAccessError": { "message": "Firefox 需要授予隐私浏览权限才能修改代理设置。" },
+  "controlledByOtherExtensions": { "message": "设置已被其他扩展程序控制。" },
+
+  "enableSync": { "message": "启用同步" },
+  "enableSyncDescription": { "message": "同步全局排除项、代理和匹配规则" },
+
+  "autoBackup": { "message": "自动备份" },
+  "autoBackupDescription": { "message": "保存时自动备份设置到下载文件夹" },
+
+  "theme": { "message": "主题" },
+  "themeDescription": { "message": "选择其他主题" },
+
+  "toggleWebRTC": { "message": "切换 WebRTC" },
+  "toggleWebRTCDescription": { "message": "切换 WebRTC（仅 Firefox）" },
+
+  "limitWebRTC": { "message": "限制 WebRTC" },
+  "default": { "message": "默认" },
+  "limitWebRTCDescription": { "message": "修改浏览器的 WebRTC 设置" },
+  "publicInterfaceOnly": { "message": "仅公共网络接口" },
+  "publicPrivateInterfaces": { "message": "公共和私有网络接口" },
+  "disableNonProxied": { "message": "禁用非代理连接" },
+  "proxyOnly": { "message": "仅使用代理" },
+
+
+  "globalExclude": { "message": "全局排除列表" },
+  "globalExcludeDescription": { "message": "无需通过代理访问的主机列表" },
+
+  "container": { "message": "容器" },
+  "containerDescription": { "message": "无痕模式和容器代理（仅 Firefox）" },
+  "incognito": { "message": "无痕模式" },
+  "addContainerPrompt": { "message": "请输入容器 ID 编号。" },
+
+  "shortcut": { "message": "快捷键" },
+  "shortcutDescription": { "message": "预先选择一个代理并绑定到快捷键操作" },
+  "setProxy": { "message": "设置代理" },
+
+
+  "deleteBrowsingData": { "message": "清除浏览数据" },
+  "deleteBrowsingDataConfirm": { "message": "确定要删除 Cookies、IndexedDB 存储和 DOM 本地存储吗？" },
+
+  "restoreDefaults": { "message": "恢复默认设置" },
+
+  "proxies": { "message": "代理" },
+  "add": { "message": "添加" },
+  "getLocation": { "message": "获取位置" },
+  "ping": { "message": "Ping" },
+
+  "duplicate": { "message": "复制" },
+  "delete": { "message": "删除" },
+
+  "title": { "message": "标题" },
+  "type": { "message": "类型" },
+  "server": { "message": "服务器" },
+  "city": { "message": "城市" },
+  "country": { "message": "国家" },
+  "color": { "message": "颜色" },
+  "random": { "message": "随机" },
+  "proxyDNS": { "message": "代理 DNS" },
+
+  "hostname": { "message": "主机名" },
+  "port": { "message": "端口" },
+  "username": { "message": "用户名" },
+  "password": { "message": "密码" },
+  "togglePassword": { "message": "显示密码" },
+  "storeLocally": { "message": "本地存储" },
+  "view": { "message": "查看" },
+
+
+  "pattern": { "message": "规则" },
+  "include": { "message": "包含" },
+  "exclude": { "message": "排除" },
+  "all": { "message": "全部" },
+  "plainHost": { "message": "普通主机" },
+  "wildcard": { "message": "通配符" },	
+
+
+  "bulkEdit": { "message": "批量编辑" },
+  "openAll": { "message": "展开全部" },
+  "closeAll": { "message": "折叠全部" },
+  "setType": { "message": "设置类型" },
+  "setPort": { "message": "设置端口" },
+  "setTitle": { "message": "设置标题" },
+  "setUsername": { "message": "设置用户名" },
+  "setPassword": { "message": "设置密码" },
+  "moveProxy": { "message": "移动代理" },
+  "movePattern": { "message": "移动规则" },
+  "deleteProxy": { "message": "删除代理" },
+
+
+  "importFoxyProxyAccount": { "message": "导入 FoxyProxy 账户" },
+  "mainServer": { "message": "主服务器" },
+  "altServer": { "message": "备用服务器" },
+
+  "importProxyList": { "message": "导入代理列表" },
+  "importFromURL": { "message": "从 URL 导入" },
+  "importFromOlderVersions": { "message": "从旧版本导入" },
+
+  "tester": { "message": "规则测试器" },
+  "testerDescription": { "message": "测试规则与 URL 的匹配情况" },
+  "test": { "message": "测试" },
+  "result": { "message": "结果" },
+  "back": { "message": "返回" },
+  "invalidPatternError": { "message": "无效规则" },
+  "schemeError": { "message": "协议中的 '*' 必须是唯一字符" },
+  "unsupportedSchemeError": { "message": "不支持的协议" },
+  "hostError": { "message": "主机中的 '*' 必须位于开头" },
+  "hostDotError": { "message": "主机中的 '*' 必须是唯一字符或后面紧跟 '.'" },
+  "portError": { "message": "主机名中不能包含端口号" },
+  "proxyByPatternsDescription": { "message": "使用当前启用的代理规则测试 URL" },
+
+  "log": { "message": "日志" },
+  "notAvailable": { "message": "Chrome 无法获取代理数据（仅 Firefox 支持）" },
+  "getAssociatedDomains": { "message": "获取关联域名" },
+  "documentUrl": { "message": "文档 URL" },
+  "url": { "message": "URL" },
+  "method": { "message": "请求方法" },
+  "proxy": { "message": "代理" },
+  "time": { "message": "时间" },
+
+  "about": { "message": "关于" },
+  "error": { "message": "操作过程中发生错误" },
+  "export": { "message": "导出" },
+  "fileTypeError": { "message": "不支持的文件格式" },
+  "help": { "message": "帮助" },
+  "import": { "message": "导入" },
+  "options": { "message": "选项" },
+  "save": { "message": "保存" }
+}

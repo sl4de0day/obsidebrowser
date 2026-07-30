@@ -1,0 +1,37 @@
+/* ---------- alternative themes ---------- */
+
+/* ----- moonlight ----- */
+:root.moonlight {
+  --bg: light-dark(#fff, #333);
+  --body-bg: light-dark(#f9f9fb, #444);
+
+  --nav-bg: light-dark(#d9d9db, #000);
+  --nav-hover: var(--hover);
+  --nav-color: var(--color);
+
+  .flat {
+    color: inherit;
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+
+    &:hover {
+      background-color: var(--hover);
+    }
+  }
+
+  footer button {
+    color: inherit;
+    background-color: var(--bg-alt);
+
+    &:hover {
+      background-color: var(--hover);
+    }
+  }
+}
+/* ----- /moonlight ----- */
+
+/* ----- alt ----- */
+:root.alt {
+  --body-bg: var(--bg);
+}
+/* ----- /alt ----- */

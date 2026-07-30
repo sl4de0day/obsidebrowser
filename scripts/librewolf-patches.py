@@ -1,0 +1,258 @@
+#!/usr/bin/env python3
+
+#
+# The script that patches the firefox source into the librewolf source.
+#
+
+
+import os
+import sys
+import subprocess
+import optparse
+import time
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+
+#
+# Windows/git-bash compatibility: Python's os.system() uses cmd.exe, which does
+# NOT understand single-quoted args, globs (*.xpi) or `find -exec ... \;` the way
+# the harness commands require. Route every shell call through bash instead so the
+# commands run exactly as they would in a Unix/MozillaBuild shell.
+#
+BASH = os.environ.get("OBSIDE_BASH", "bash")
+
+
+def _sh(cmd):
+    return subprocess.call([BASH, "-c", cmd])
+
+
+#
+# general functions, skip these, they are not that interesting
+#
+
+start_time = time.time()
+parser = optparse.OptionParser()
+parser.add_option('-n', '--no-execute', dest='no_execute', default=False, action="store_true")
+parser.add_option('-P', '--no-settings-pane', dest='settings_pane', default=True, action="store_false")
+options, args = parser.parse_args()
+
+
+def script_exit(statuscode):
+    if (time.time() - start_time) > 60:
+        # print elapsed time
+        elapsed = time.strftime("%H:%M:%S", time.gmtime(time.time() - start_time))
+        print("\n\aElapsed time: {elapsed}")
+        sys.stdout.flush()
+
+    sys.exit(statuscode)
+
+def exec(cmd, exit_on_fail = True, do_print = True):
+    if cmd != '':
+        if do_print:
+            print(cmd)
+            sys.stdout.flush()
+        if not options.no_execute:
+            retval = _sh(cmd)
+            if retval != 0 and exit_on_fail:
+                print("fatal error: command '{}' failed".format(cmd))
+                sys.stdout.flush()
+                script_exit(1)
+            return retval
+        return None
+
+def patch(patchfile):
+    cmd = "patch -p1 -i {}".format(patchfile)
+    print("\n*** -> {}".format(cmd))
+    sys.stdout.flush()
+    if not options.no_execute:
+        retval = _sh(cmd)
+        if retval != 0:
+            print("fatal error: patch '{}' failed".format(patchfile))
+            sys.stdout.flush()
+            script_exit(1)
+
+def enter_srcdir(_dir = None):
+    if _dir == None:
+        dir = "librewolf-{}-{}".format(version, release)
+    else:
+        dir = _dir
+    print("cd {}".format(dir))
+    sys.stdout.flush()
+    if not options.no_execute:
+        try:
+            os.chdir(dir)
+        except:
+            print("fatal error: can't change to '{}' folder.".format(dir))
+            sys.stdout.flush()
+            script_exit(1)
+        
+def leave_srcdir():
+    print("cd ..")
+    sys.stdout.flush()
+    if not options.no_execute:
+        os.chdir("..")
+
+
+        
+#
+# This is the only interesting function in this script
+#
+
+
+def librewolf_patches():
+
+    enter_srcdir()
+
+    # remove OpenAI integration
+    exec('rm -vf toolkit/components/ml/content/backends/OpenAIPipeline.mjs')
+    exec('rm -vrf toolkit/components/ml/vendor/openai')
+    
+    # create the right mozconfig file..
+    exec('cp -v ../assets/mozconfig.new mozconfig')
+
+    # copy branding files..
+    exec("cp -r ../themes/browser .")
+
+    # copy the right search-config.json file
+    exec('cp -v ../assets/search-config.json services/settings/dumps/main/search-config.json')
+
+    # read lines of .txt file into 'patches'
+    with open('../assets/patches.txt'.format(version), "r") as f:
+        for line in f.readlines():
+            patch('../'+line)
+
+
+
+    # vs_pack.py issue... should be temporary
+    exec('cp -v ../patches/pack_vs.py build/vs/')
+
+    # https://codeberg.org/librewolf/source/pulls/97#issuecomment-5654510
+    exec("sed -i '/# This must remain last./i gkrust_features += [\"glean_disable_upload\"]\\n' toolkit/library/rust/gkrust-features.mozbuild")
+
+    # Temporary fix used with patches/rust-build.patch
+    exec("sed -i 's/9456ca46168ef86c98399a2536f577ef7be3cdde90c0c51392d8ac48519d3fae/60cd124908737068ab21c7773b3df71d00e186cd605f15bad9977232830aabc0/g' third_party/rust/encoding_rs/.cargo-checksum.json")
+    exec("sed -i 's/d7405d2bcf99cf9729075473c45f677630f4c1947c8ba9757db607f2025a7da2/a066ad881d5a74386e666fc844f7fecbbd70021d0330c1b08a2d7a2a67437ccf/g' third_party/rust/encoding_rs/.cargo-checksum.json")
+
+    #
+    # Apply most recent `settings` repository files.
+    #
+
+    exec('mkdir -p lw')
+    enter_srcdir('lw')
+    exec('cp -v ../../settings/librewolf.cfg .')
+    exec('cp -v ../../settings/distribution/policies.json .')
+    exec('cp -v ../../settings/defaults/pref/local-settings.js .')
+    exec('mkdir -p extensions')
+    exec('cp -v ../../settings/distribution/extensions/*.xpi extensions/')
+    leave_srcdir();
+
+
+
+    
+    #
+    # pref-pane patches
+    #
+
+    # 1) patch it in
+    patch('../patches/pref-pane/pref-pane-small.patch')
+    # 2) new files
+    exec('cp ../patches/pref-pane/category-librewolf.svg browser/themes/shared/preferences/category-librewolf.svg')
+    exec('cp ../patches/pref-pane/librewolf.css browser/themes/shared/preferences/librewolf.css')
+    exec('cp ../patches/pref-pane/librewolf.inc.xhtml browser/components/preferences/librewolf.inc.xhtml')
+    exec('cp ../patches/pref-pane/librewolf.js browser/components/preferences/librewolf.js')
+
+    #
+    # Obside auto-update (Gecko MAR) overlay
+    #
+    # Point the update endpoint at obsidebrowser.com: build/application.ini.in ships
+    # https://@MOZ_APPUPDATE_HOST@/... and @MOZ_APPUPDATE_HOST@ defaults to
+    # aus5.mozilla.org (build/moz.build), so rewrite the host. Then swap in Obside's
+    # MAR-signing public keys (a stock tree ships Mozilla's release_*.der, which would
+    # reject Obside-signed MARs). The updater flags + MAR_CHANNEL_ID/ACCEPTED live in
+    # assets/mozconfig.new; the DER private keys are kept OFFLINE (not in this repo).
+    exec("sed -i 's|@MOZ_APPUPDATE_HOST@|obsidebrowser.com|' build/application.ini.in")
+    exec('cp ../patches/updater/release_primary.der toolkit/mozapps/update/updater/release_primary.der')
+    exec('cp ../patches/updater/release_secondary.der toolkit/mozapps/update/updater/release_secondary.der')
+
+    patch('../patches/obside-customizations.patch')
+    
+    # provide a script that fetches and bootstraps Nightly and some mozconfigs
+    exec('cp -v ../scripts/mozfetch.sh lw/')
+    exec('cp -v ../assets/mozconfig.new lw/')
+
+    # override the firefox version
+    for file in ["browser/config/version.txt", "browser/config/version_display.txt"]:
+        with open(file, "w") as f:
+            f.write("{}-{}".format(version,release))
+
+    print("-> Downloading locales from https://github.com/mozilla-l10n/firefox-l10n")
+    # wget is not present in git-bash on Windows; use curl and a bash-friendly
+    # relative temp dir (backslash Windows temp paths break inside bash -c).
+    exec("rm -rf l10n-tmp && mkdir -p l10n-tmp")
+    exec("curl -L --retry 3 -o l10n-tmp/l10n.zip 'https://codeload.github.com/mozilla-l10n/firefox-l10n/zip/refs/heads/main'")
+    exec("unzip -qo l10n-tmp/l10n.zip -d l10n-tmp")
+    exec("rm -rf lw/l10n && mv l10n-tmp/firefox-l10n-main lw/l10n")
+    exec("rm -rf l10n-tmp")
+
+    print("-> Patching appstrings.properties")
+    # Why is "Firefox" hardcoded there???
+    exec("find . -path '*/appstrings.properties' -exec sed -i s/Firefox/LibreWolf/ {} \\;")
+
+    print("-> Applying LibreWolf locales")
+    l10n_dir = Path("..", "l10n")
+    for source_path in l10n_dir.rglob("*"):
+        if source_path.is_dir() or source_path.name.endswith(".md"):
+            continue
+
+        rel_path = source_path.relative_to(l10n_dir)
+        if rel_path.parts[0] == "en-US":
+            target_path = Path(
+                rel_path.parts[1],
+                "locales", "en-US",
+                *rel_path.parts[2:]
+            )
+        else:
+            target_path = Path(
+                "lw", "l10n",
+                *rel_path.parts
+            )
+        
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+
+        write_mode = "w"
+        if ".inc" in target_path.name:
+            target_path = target_path.with_name(target_path.name.replace(".inc", ""))
+            write_mode = "a"
+
+        print(f"{source_path} {'>' if write_mode == 'w' else '>>'} {target_path}")
+
+        if not target_path.exists() and write_mode == "a":
+            print(f"warning: target file {target_path} doesn't exist")
+        # encoding/newline pinned so this works on non-UTF-8 Windows locales
+        # (e.g. cp1254) and doesn't rewrite LF locale files as CRLF.
+        with open(target_path, write_mode, encoding="utf-8", newline="") as target_file:
+            with open(source_path, "r", encoding="utf-8", newline="") as source_file:
+                target_file.write(("\n\n" if write_mode == "a" else "") + source_file.read())
+
+    leave_srcdir()
+
+
+
+#
+# Main functionality in this script.. which is to call librewolf_patches()
+#
+
+if len(args) != 2:
+    sys.stderr.write('error: please specify version and release of librewolf source')
+    sys.exit(1)
+version = args[0]
+release = args[1]
+srcdir = "librewolf-{}-{}".format(version, release)
+if not os.path.exists(srcdir + '/configure.py'):
+    sys.stderr.write('error: folder doesn\'t look like a Firefox folder.')
+    sys.exit(1)
+
+librewolf_patches()
+
+sys.exit(0) # ensure 0 exit code

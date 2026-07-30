@@ -1,0 +1,16 @@
+Obside Network Manager
+======================
+
+This extension is a derivative work of FoxyProxy (the "browser-extension"
+project), Copyright (C) Eric H. Jung and the FoxyProxy contributors.
+
+Upstream: https://github.com/foxyproxy/browser-extension
+
+FoxyProxy is distributed under the GNU General Public License, version 2 (see
+the accompanying COPYING file for the full license text). As a derivative work,
+Obside Network Manager — including Obside's modifications (rebranding, Obside
+account integration, and proxy/HTTPS changes) — is likewise distributed under
+the terms of the GNU General Public License, version 2.
+
+The original author attribution (Eric H. Jung / FoxyProxy) is retained in the
+extension's About page (content/about.html).

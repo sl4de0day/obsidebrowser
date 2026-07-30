@@ -1,0 +1,79 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* ==================== OBSIDE PROFILE CLEANUP THEME ==================== */
+
+:root {
+  --obside-darkest: #000000;
+  --obside-medium: #0d1117;
+  --obside-primary: #6366f1;
+  --obside-accent: #818cf8;
+  --obside-text-primary: #ffffff;
+  --obside-text-muted: #8b949e;
+}
+
+body {
+  background: linear-gradient(135deg, 
+    var(--obside-darkest) 0%, 
+    var(--obside-medium) 50%, 
+    var(--obside-darkest) 100%);
+  color: var(--obside-text-primary);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+#header,
+#refreshCheckboxContainer,
+#refreshButtonContainer {
+  text-align: center;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 30px;
+}
+
+#header {
+  font-size: 35px;
+  font-weight: 600;
+  margin-top: 45px;
+  background: linear-gradient(135deg, #ffffff 0%, #e1e4e8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#refreshCheckbox {
+  vertical-align: middle;
+  accent-color: var(--obside-primary);
+}
+
+#checkboxLabel {
+  font-size: 14px;
+  color: var(--obside-text-muted);
+}
+
+#refreshButton {
+  padding: 12px 48px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--obside-accent) 0%, var(--obside-primary) 100%);
+  color: var(--obside-darkest);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+#refreshButton:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+}
+
+#footer {
+  position: fixed;
+  right: 50px;
+  bottom: 59px;
+  color: var(--obside-text-muted);
+  font-size: 12px;
+}

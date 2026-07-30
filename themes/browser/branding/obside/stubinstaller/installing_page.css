@@ -1,0 +1,89 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* ==================== OBSIDE INSTALLER THEME ==================== */
+
+:root {
+  --obside-darkest: #000000;
+  --obside-medium: #0d1117;
+  --obside-primary: #6366f1;
+  --obside-accent: #818cf8;
+  --obside-text-primary: #ffffff;
+  --obside-text-muted: #8b949e;
+}
+
+body {
+  background: linear-gradient(135deg, 
+    var(--obside-darkest) 0%, 
+    var(--obside-medium) 50%, 
+    var(--obside-darkest) 100%);
+  color: var(--obside-text-primary);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+#label,
+#progress_background,
+#blurb {
+  text-align: center;
+  margin: 20px 30px;
+}
+
+#label {
+  font-size: 40px;
+  font-weight: 600;
+  margin-top: 100px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #e1e4e8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#progress_background {
+  margin: 0 auto;
+  width: 60%;
+  height: 24px;
+  background-color: rgba(129, 140, 248, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(129, 140, 248, 0.2);
+}
+
+body.high-contrast #progress_background {
+  outline: solid;
+}
+
+#progress_bar {
+  margin: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--obside-accent) 0%, var(--obside-primary) 100%);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  transition: width 0.3s ease;
+}
+
+body.high-contrast #progress_bar {
+  border-top: 24px solid;
+  box-sizing: border-box;
+}
+
+#header,
+#content {
+  display: none;
+}
+
+#blurb {
+  font-size: 18px;
+  color: var(--obside-text-muted);
+  line-height: 1.6;
+}
+
+#footer {
+  position: fixed;
+  right: 50px;
+  bottom: 59px;
+  color: var(--obside-text-muted);
+  font-size: 12px;
+}

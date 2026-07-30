@@ -1,0 +1,433 @@
+@import 'default.css';
+@import 'nav.css';
+@import 'progress-bar.css';
+@import 'toggle-switch.css';
+@import 'spinner.css';
+@import 'theme.css';
+@import 'options-show.css';
+@import 'options-popup.css';
+@import 'tester.css';
+@import 'log.css';
+
+/* ----- general ----- */
+:root {
+  --max-width: 60rem;
+}
+
+body {
+  /* show body after page is populated */
+  opacity: 0;
+  margin: 0;
+  overflow: hidden;
+  transition: opacity 0.5s;
+  font-size: initial;
+
+  &::after {
+    content: '';
+    background-image: url('../image/logo.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 0.5em;
+    right: 0;
+    display: inline-block;
+    width: 128px;
+    height: 128px;
+    opacity: 0.3;
+    z-index: -1;
+  }
+}
+
+article {
+  padding: 1em;
+}
+
+section {
+  margin: 0 auto;
+  max-width: var(--max-width);
+  height: calc(100vh - var(--nav-height) - 2rem);
+  overflow: auto;
+}
+
+iframe {
+  border: none;
+  margin: 0;
+  width: 100%;
+  height: 99%;
+}
+
+label input[type="checkbox"] {
+  margin: 0 0.5em 0 0;
+}
+
+/*
+input[type="number"] {
+  width: 4em;
+}
+*/
+
+fieldset {
+  background-color: var(--bg);
+  border-radius: 0.5em;
+  border: 0;
+  padding: 1.5em;
+}
+
+.description {
+  border-left: 2px solid #abc;
+  color: var(--dim);
+  font-size: 0.9em;
+  font-style: italic;
+  margin-left: 0.5em;
+  margin-top: 0;
+  padding-left: 0.3em;
+
+  &:has(+ textarea) {
+    margin-bottom: 0.5em;
+  }
+}
+
+textarea {
+  min-height: 6em;
+  resize: vertical;
+}
+
+details {
+  padding: 0;
+  background-color: var(--bg-alt);
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+
+  > summary {
+    border-radius: 5px;
+    padding: 0.5em;
+
+    &:hover,
+    details[open] & {
+      background-color: var(--hover);
+    }
+  }
+}
+
+/* ----- button ----- */
+button,
+label.button {
+  border-radius: 5px;
+  color: inherit;
+  font-size: 0.9em;
+  /* min-width: 8em; */
+  padding: 0.4em 1em;
+}
+
+button.flat,
+label.button {
+  color: #fff;
+  display: inline-block;
+  min-width: 8em;
+}
+
+button.slim {
+  padding: 0.2em 1em;
+  min-width: unset;
+}
+/* ----- /button ----- */
+
+/* ----- data-link ----- */
+[data-link]:not(img) {
+  cursor: pointer;
+
+  &::before {
+    content: '#';
+    display: inline-block;
+    width: 0.8em;
+    margin-left: -0.8em;
+    opacity: 0.5;
+    visibility: hidden;
+  }
+
+  &:hover {
+    text-decoration: underline;
+
+    &::before {
+      visibility: visible;
+    }
+  }
+}
+
+img[data-link] {
+  cursor: pointer;
+  display: table;
+  width: 1em;
+  margin-left: auto;
+}
+
+/* ----- /data-link ----- */
+
+/* ----- options ----- */
+button[type="submit"] {
+  font-weight: bold;
+}
+
+button:is(.up, .down) {
+  color: #ccc;
+  text-shadow: 0 -1px 1px #555, 0 1px 0 #fff;
+
+  &:hover {
+    color: #080;
+  }
+}
+
+button.random {
+  font-size: 1.3em;
+}
+
+section.options {
+  fieldset * {
+    transition: opacity 0.5s;
+  }
+
+  .buttons {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    gap: 0.2em;
+    margin-bottom: 1em;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 0.5em;
+
+    input {
+      place-self: start;
+    }
+
+    select {
+      place-self: start;
+      width: auto;
+    }
+
+    p {
+      grid-column: span 2;
+    }
+  }
+
+  :is(.container, .commands) label {
+    margin-left: 1em;
+  }
+
+  .container button {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .commands {
+    margin-bottom: 1em;
+  }
+}
+/* ----- /options ----- */
+
+details .content {
+  padding: 0.5em;
+}
+
+/* ----- proxy ----- */
+.proxy-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  gap: 0.2em;
+  margin-bottom: 0.5em;
+
+  input.filter {
+    background: url('../image/filter.svg') no-repeat left 0.5em center / 1em;
+    padding-left: 2em;
+    justify-self: start;
+  }
+}
+
+details.proxy {
+  &.off {
+    display: none;
+  }
+
+  summary {
+    list-style: none;
+    border-left: 1.5em solid var(--btn-bg);
+    display: grid;
+    grid-template-columns: auto 1fr repeat(5, auto);
+    gap: 0.2em;
+    align-items: center;
+
+    span:first-of-type {
+      margin-right: 0.3em;
+    }
+
+    span:nth-of-type(2):empty::before {
+      content: 'title ...';
+      font-style: italic;
+      opacity: 0.2;
+    }
+
+    .toggle {
+      margin-right: 0.2em;
+    }
+  }
+}
+
+div.proxy-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.5fr;
+  gap: 0.2em 0.5em;
+  padding-bottom: 0.5em;
+
+  .password {
+    display: grid;
+    grid-template-columns: 1fr 1em;
+    gap: 0.5em;
+  }
+
+  input[type="color"] {
+    border: 0;
+    width: 4em;
+    height: 1.7em;
+  }
+
+  button.random {
+    line-height: 1;
+  }
+
+  .pac {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.2em 0.5em;
+    font-size: 0.9em;
+    grid-row: span 2;
+
+    [type="url"] {
+      grid-column: span 2;
+    }
+
+    button {
+      place-self: center end;
+    }
+  }
+}
+
+/* ----- pattern ----- */
+.pattern-box {
+  /* padding space for scrollbar */
+  padding: 0.2em;
+  max-height: 20em;
+  overflow-y: auto;
+}
+
+.pattern-head,
+.pattern-row {
+  display: grid;
+  grid-template-columns: 3em 6em 6em 1fr 2fr 2em 1em 1em;
+  gap: 0.2em;
+  place-items: center;
+  font-size: 0.9em;
+  line-height: 1;
+}
+
+.pattern-head {
+  background-color: var(--bg);
+  padding: 0.2em;
+
+
+
+  .plus {
+    font-size: 1.2em;
+    padding: 0.1em 0.8em;
+  }
+
+  :nth-child(2) {
+    grid-column: span 2;
+  }
+
+  :last-child {
+    font-size: 1em;
+    grid-column: span 2;
+  }
+}
+
+/* hide when there are no patterns */
+.pattern-head:has(+ .pattern-box:empty) :nth-child(n+3) {
+  opacity: 0;
+}
+
+.pattern-row {
+  margin-top: 0.2em;
+  padding: 0 0.4em;
+}
+/* ----- /pattern ----- */
+
+/* ----- bulk edit ----- */
+.bulk-edit {
+  display: grid;
+  grid-template-columns: repeat(3, 3.5em) 10em auto;
+  justify-content: end;
+  gap: 0.2em;
+}
+
+details.proxy.t1 {
+  outline: 1px solid red;
+}
+
+details.proxy:is(.t1, .s1) .pattern-row.t2 {
+  outline: 1px solid blue;
+  outline-offset: -1px;
+}
+
+details.proxy.s1 {
+  outline: 1px solid green;
+}
+
+.proxy-div:empty ~ .bulk-edit {
+  opacity: 0.3;
+  pointer-events: none;
+  user-select: none;
+}
+/* ----- /bulk-edit ----- */
+
+/* ----- import ----- */
+section.import {
+  textarea {
+    height: 10em;
+  }
+
+  summary::marker {
+    color: var(--header);
+  }
+
+  details button.flat {
+    margin-top: 0.5em;
+  }
+
+  details.import-account {
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1em;
+      gap: 0.5em;
+    }
+
+    input#username {
+      grid-column: span 2;
+    }
+
+    button.flat {
+      justify-self: start;
+    }
+
+    .account-options {
+      display: grid;
+      grid-auto-flow: column;
+      grid-column: span 2;
+      justify-content: start;
+      gap: 0.5em;
+    }
+  }
+}
+/* ----- /import ----- */

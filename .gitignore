@@ -1,0 +1,51 @@
+# ═══════════════════════════════════════════════════════════════════════════
+#  Obside — pre-open-source .gitignore
+#  İlk taslak; repo kapsamı (§5) kesinleşince rafine edilecek.
+#  Amaç: türetilmiş build çıktısı, secret'lar, yedekler ve iç dokümanlar
+#  ASLA public repoya girmesin. İlk commit öncesi `git status` + `git ls-files`
+#  ile İKİ KEZ gözden geçir.
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ── Türetilmiş build ağacı (scripts/librewolf-patches.py yeniden üretir) + çıktılar ──
+/librewolf-150.0.3-1/
+obj-*/
+**/dist/
+node_modules/
+
+# ── Release otomasyonu: admin kimliği içerir → ASLA yayınlanmaz + runtime token cache ──
+obside_release.py
+obside_release_config.json
+
+# ── Yedek / snapshot dizinleri (tree-backup-pre-securityfixes eski attestation
+#    private key'i taşıyor — bunları ayrıca fiziksel olarak da SİL) ──
+*-backup*/
+tree-backup-*/
+round*-backups/
+optimization-backup-*/
+*.bak
+
+# ── Bundle master'ları (binary'ler, kaynak değil) + çalışma dizinleri ──
+bundle-staging/
+xpi-work/
+
+# ── İç dokümanlar / sunucu promptları / güvenlik-audit yol haritası (public repoya girmez) ──
+OBSIDE-*.md
+SUNUCU-*.md
+GERI-DONULECEK-*.md
+*-SERVER-PROMPT.md
+
+# ── Anahtar / secret materyali (belt-and-suspenders; hiçbiri in-tree olmamalı) ──
+*.pem
+*.key
+*.p12
+*.pfx
+*.jwk
+*-mar-keys/
+.env
+.env.*
+
+# ── Bayat VCS pointer / editör / OS ──
+settings/.git
+**/.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,66 @@
+{
+  "manifest_version": 2,
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "obside-dark@obsidebrowser.io"
+    }
+  },
+
+  "name": "Default",
+  "description": "The default Obside theme.",
+  "author": "Obside Team",
+  "version": "1.0.0",
+  "icons": { "32": "icon.svg" },
+
+  "theme": {
+    "properties": {
+      "color_scheme": "dark"
+    },
+    "colors": {
+      "frame": "#0a0d14",
+      "toolbar": "#0d1117",
+      "button_background_active": "rgba(99, 102, 241, 0.4)",
+      "button_background_hover": "rgba(99, 102, 241, 0.2)",
+      "icons": "#a5b4fc",
+      "icons_attention": "#6366f1",
+      "toolbar_text": "#ffffff",
+      "toolbar_vertical_separator": "rgba(99, 102, 241, 0.4)",
+      "toolbar_field": "#0d1117",
+      "toolbar_field_focus": "#0d1117",
+      "toolbar_field_text": "#ffffff",
+      "toolbar_field_text_focus": "#ffffff",
+      "toolbar_field_border": "#6366f1",
+      "toolbar_field_border_focus": "#818cf8",
+      "toolbar_field_highlight": "rgba(99, 102, 241, 0.3)",
+      "toolbar_top_separator": "transparent",
+      "toolbar_bottom_separator": "#6366f1",
+      "bookmark_text": "#ffffff",
+      "tab_selected": "#6366f1",
+      "tab_text": "#ffffff",
+      "tab_background_text": "#8b949e",
+      "tab_background_separator": "#6366f1",
+      "tab_line": "#818cf8",
+      "tab_loading": "#818cf8",
+      "ntp_background": "#0a0d14",
+      "ntp_text": "#ffffff",
+      "popup": "#0d1117",
+      "popup_text": "#ffffff",
+      "popup_border": "#6366f1",
+      "popup_highlight": "rgba(99, 102, 241, 0.3)",
+      "popup_highlight_text": "#ffffff",
+      "sidebar": "#0a0d14",
+      "sidebar_text": "#ffffff",
+      "sidebar_border": "#6366f1",
+      "sidebar_highlight": "#6366f1",
+      "sidebar_highlight_text": "#ffffff",
+      "focus_outline": "#6366f1"
+    }
+  },
+
+  "theme_experiment": {
+    "colors": {
+      "focus_outline": "--focus-outline-color"
+    }
+  }
+}

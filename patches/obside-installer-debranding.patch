@@ -1,0 +1,126 @@
+# Obside: remove non-Obside (Mozilla / Firefox) branding from the Windows NSIS
+# installer.
+#
+# De-brands the display strings and URLs that would otherwise surface Mozilla /
+# Firefox identity to the user or the OS, while PRESERVING every load-bearing
+# identifier: registry key paths under Software\Mozilla, the MozillaWindowClass /
+# MozillaDialogClass window classes, the MozillaMaintenance service short-name,
+# the FirefoxHTML-/FirefoxURL-/FirefoxPDF- DDE prog-ids, and CERTIFICATE_NAME /
+# CERTIFICATE_ISSUER (used to verify update & maintenance-service signatures).
+#
+# The stub (online) installer and the maintenance-service installer are not built
+# for Obside (stub needs MOZ_STUB_INSTALLER; maintenance is --disable-d), so those
+# strings are inert, but they are de-branded too for completeness. Telemetry is
+# compiled out (MOZ_TELEMETRY_REPORTING=0), so the telemetry/ping endpoints are
+# inert as well.
+--- a/browser/installer/windows/nsis/defines.nsi.in
++++ b/browser/installer/windows/nsis/defines.nsi.in
+@@ -37,7 +37,7 @@
+ !define AppRegName            "Firefox"
+ !define ToastAumidPrefix      "@MOZ_TOAST_APP_NAME@Toast-"
+
+-!define BrandProductName      "Firefox"
++!define BrandProductName      "Obside"
+ !ifndef DEV_EDITION
+ !define BrandShortName        "@MOZ_APP_DISPLAYNAME@"
+ !endif
+@@ -90,7 +90,7 @@
+ !define BETA_UPDATE_CHANNEL
+ !endif
+
+-!define BaseURLStubPing "http://download-stats.mozilla.org/stub"
++!define BaseURLStubPing "https://obsidebrowser.com/stub"
+
+ # ARCH is used when it is necessary to differentiate the x64 registry keys from
+ # the x86 registry keys (e.g. the uninstall registry key).
+@@ -152,7 +152,7 @@
+ !define APPROXIMATE_REQUIRED_SPACE_MB "145"
+
+ # Constants for parts of the telemetry submission URL
+-!define TELEMETRY_BASE_URL https://incoming.telemetry.mozilla.org/submit
+-!define TELEMETRY_NAMESPACE firefox-installer
++!define TELEMETRY_BASE_URL https://obsidebrowser.com/submit
++!define TELEMETRY_NAMESPACE obside-installer
+ !define TELEMETRY_INSTALL_PING_VERSION 1
+ !define TELEMETRY_INSTALL_PING_DOCTYPE install
+@@ -160,4 +160,4 @@
+ !define TELEMETRY_UNINSTALL_PING_NAMESPACE telemetry
+ !define TELEMETRY_UNINSTALL_PING_DOCTYPE uninstall
+
+-!define URLWinPre10NeedsEsr115 https://support.mozilla.org/kb/firefox-users-windows-7-8-and-81-moving-extended-support
++!define URLWinPre10NeedsEsr115 https://obsidebrowser.com/
+--- a/browser/installer/windows/nsis/shared.nsh
++++ b/browser/installer/windows/nsis/shared.nsh
+@@ -701,7 +701,7 @@
+     ${WriteRegStr2} $RegHive "$0" "DisplayName" "${BrandFullNameInternal}$3 (${ARCH} ${AB_CD})" 0
+     ${WriteRegStr2} $RegHive "$0" "HelpLink" "${HelpLink}" 0
+     ${WriteRegStr2} $RegHive "$0" "InstallLocation" "$8" 0
+-    ${WriteRegStr2} $RegHive "$0" "Publisher" "Mozilla" 0
++    ${WriteRegStr2} $RegHive "$0" "Publisher" "${CompanyName}" 0
+     ${WriteRegStr2} $RegHive "$0" "UninstallString" "$\"$8\uninstall\helper.exe$\"" 0
+     DeleteRegValue SHCTX "$0" "URLInfoAbout"
+ ; Don't add URLUpdateInfo which is the release notes url except for the release
+--- a/browser/installer/windows/nsis/uninstaller.nsi
++++ b/browser/installer/windows/nsis/uninstaller.nsi
+@@ -150,10 +150,10 @@
+ !endif
+ ShowUnInstDetails nevershow
+
+-!define URLUninstallSurvey "https://qsurvey.mozilla.com/s3/FF-Desktop-Post-Uninstall?channel=${UpdateChannel}&version=${AppVersion}&osversion="
++!define URLUninstallSurvey "https://obsidebrowser.com/uninstall/?channel=${UpdateChannel}&version=${AppVersion}&osversion="
+
+ ; Support for the profile refresh feature
+-!define URLProfileRefreshHelp "https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings"
++!define URLProfileRefreshHelp "https://obsidebrowser.com/"
+
+ ; Arguments to add to the command line when launching FileMainEXE for profile refresh
+ !define ArgsProfileRefresh "-reset-profile -migration -uninstaller-profile-refresh"
+--- a/browser/installer/windows/nsis/stub.nsh
++++ b/browser/installer/windows/nsis/stub.nsh
+@@ -263,11 +263,11 @@
+ !undef URLStubDownloadX86
+ !undef URLStubDownloadAMD64
+ !undef URLStubDownloadAArch64
+-!define URLStubDownloadX86 "https://download.mozilla.org/?os=win&lang=${AB_CD}&product=firefox-beta-latest"
+-!define URLStubDownloadAMD64 "https://download.mozilla.org/?os=win64&lang=${AB_CD}&product=firefox-beta-latest"
+-!define URLStubDownloadAArch64 "https://download.mozilla.org/?os=win64-aarch64&lang=${AB_CD}&product=firefox-beta-latest"
++!define URLStubDownloadX86 "https://obsidebrowser.com/download/?os=win&lang=${AB_CD}"
++!define URLStubDownloadAMD64 "https://obsidebrowser.com/download/?os=win64&lang=${AB_CD}"
++!define URLStubDownloadAArch64 "https://obsidebrowser.com/download/?os=win64-aarch64&lang=${AB_CD}"
+ !undef URLManualDownload
+-!define URLManualDownload "https://www.mozilla.org/${AB_CD}/firefox/installer-help/?channel=beta&installer_lang=${AB_CD}"
++!define URLManualDownload "https://obsidebrowser.com/download/"
+ !undef Channel
+ !define Channel "beta"
+ !endif
+@@ -1574,7 +1574,7 @@
+   Push $6 ; This is our response timeout counter
+
+   InetBgDL::Get /RESET /END
+-  InetBgDL::Get "https://product-details.mozilla.org/1.0/firefox_versions.json" \
++  InetBgDL::Get "https://obsidebrowser.com/1.0/versions.json" \
+                 "$PLUGINSDIR\firefox_versions.json" \
+                 /CONNECTTIMEOUT 120 /RECEIVETIMEOUT 120 /END
+
+--- a/browser/installer/windows/nsis/maintenanceservice_installer.nsi
++++ b/browser/installer/windows/nsis/maintenanceservice_installer.nsi
+@@ -44,5 +44,5 @@
+   "SOFTWARE\Mozilla\MaintenanceService\3932ecacee736d366d6436db0f55bce4"
+
+-!define CompanyName "Mozilla Corporation"
++!define CompanyName "Obside"
+ !define BrandFullNameInternal ""
+
+@@ -52,3 +52,3 @@
+ ; the version number, but we redefine BrandFullName
+-!define MaintFullName "Mozilla Maintenance Service"
++!define MaintFullName "Obside Maintenance Service"
+ !ifdef BrandFullName
+@@ -198,7 +198,7 @@
+   WriteRegStr HKLM "${MaintUninstallKey}" "DisplayIcon" \
+                    "$INSTDIR\Uninstall.exe,0"
+   WriteRegStr HKLM "${MaintUninstallKey}" "DisplayVersion" "${AppVersion}"
+-  WriteRegStr HKLM "${MaintUninstallKey}" "Publisher" "Mozilla"
++  WriteRegStr HKLM "${MaintUninstallKey}" "Publisher" "Obside"
+   WriteRegStr HKLM "${MaintUninstallKey}" "Comments" "${BrandFullName}"
+   WriteRegDWORD HKLM "${MaintUninstallKey}" "NoModify" 1

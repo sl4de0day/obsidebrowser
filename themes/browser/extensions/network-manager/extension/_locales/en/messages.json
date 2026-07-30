@@ -1,0 +1,147 @@
+{
+  "extensionName": { "message": "Obside Network Manager" },
+  "extensionNameBasic": { "message": "Obside Network Manager" },
+  "extensionDescription": { "message": "Per-Tab VPN and Proxy isolation manager for Obside" },
+
+  "proxyByPatterns": { "message": "Proxy by Patterns" },
+  "disable": { "message": "Disable" },
+  "more": { "message": "More" },
+  "tabProxy": { "message": "Tab Proxy" },
+  "containerProxy": { "message": "Container Proxy" },
+  "includeHost": { "message": "Include Host" },
+  "excludeHost": { "message": "Exclude Host" },
+  "ip": { "message": "IP" },
+  "location": { "message": "Location" },
+
+  "setTabProxy": { "message": "Set Tab Proxy" },
+  "unsetTabProxy": { "message": "Unset Tab Proxy" },
+  "openLinkTabProxy": { "message": "Open Link in New Tab Proxy" },
+
+  "incognitoAccessError": { "message": "Firefox requires private browsing permission for proxy settings." },
+  "controlledByOtherExtensions": { "message": "Settings are controlled by other extensions." },
+
+  "enableSync": { "message": "Enable Sync" },
+  "enableSyncDescription": { "message": "Synchronise global exclude, proxies & patterns" },
+
+  "autoBackup": { "message": "Auto Backup" },
+  "autoBackupDescription": { "message": "Automatically backup settings to the Downloads folder on save" },
+
+  "theme": { "message": "Theme" },
+  "themeDescription": { "message": "Select an alternative theme" },
+
+  "toggleWebRTC": { "message": "Toggle WebRTC" },
+  "toggleWebRTCDescription": { "message": "Toggle WebRTC (Firefox Only)" },
+
+  "limitWebRTC": { "message": "Limit WebRTC" },
+  "default": { "message": "Default" },
+  "limitWebRTCDescription": { "message": "Change WebRTC browser settings" },
+  "publicInterfaceOnly": { "message": "Public Interface Only" },
+  "publicPrivateInterfaces": { "message": "Public and Private Interfaces" },
+  "disableNonProxied": { "message": "Disable Non-Proxied" },
+  "proxyOnly": { "message": "Proxy Only" },
+
+
+  "globalExclude": { "message": "Global Exclude" },
+  "globalExcludeDescription": { "message": "List of hosts that should not be proxied" },
+
+  "container": { "message": "Container" },
+  "containerDescription": { "message": "Incognito and Container proxy (Firefox only)" },
+  "incognito": { "message": "Incognito" },
+  "addContainerPrompt": { "message": "Please enter the Container ID number." },
+
+  "shortcut": { "message": "Keyboard Shortcut" },
+  "shortcutDescription": { "message": "Preselect a proxy to associate with a keyboard shortcut action" },
+  "setProxy": { "message": "Set Proxy" },
+
+
+  "deleteBrowsingData": { "message": "Delete Browsing Data" },
+  "deleteBrowsingDataConfirm": { "message": "Are you sure you want to delete cookies, indexedDB storage, and DOM local storage?" },
+
+  "restoreDefaults": { "message": "Restore Defaults" },
+
+  "proxies": { "message": "Proxies" },
+  "add": { "message": "Add" },
+  "getLocation": { "message": "Get Location" },
+  "ping": { "message": "Ping" },
+
+  "duplicate": { "message": "Duplicate" },
+  "delete": { "message": "Delete" },
+
+  "title": { "message": "Title" },
+  "type": { "message": "Type" },
+  "server": { "message": "Server" },
+  "city": { "message": "City" },
+  "country": { "message": "Country" },
+  "color": { "message": "Color" },
+  "random": { "message": "Random" },
+  "proxyDNS": { "message": "Proxy DNS" },
+
+  "hostname": { "message": "Hostname" },
+  "port": { "message": "Port" },
+  "username": { "message": "Username" },
+  "password": { "message": "Password" },
+  "togglePassword": { "message": "Toggle Password" },
+  "storeLocally": { "message": "Store Locally" },
+  "view": { "message": "View" },
+
+
+  "pattern": { "message": "Pattern" },
+  "include": { "message": "Include" },
+  "exclude": { "message": "Exclude" },
+  "all": { "message": "All" },
+  "plainHost": { "message": "Plain Host" },
+  "wildcard": { "message": "Wildcard" },
+
+
+  "bulkEdit": { "message": "Bulk Edit" },
+  "openAll": { "message": "Open All" },
+  "closeAll": { "message": "Close All" },
+  "setType": { "message": "Set Type" },
+  "setPort": { "message": "Set Port" },
+  "setTitle": { "message": "Set Title" },
+  "setUsername": { "message": "Set Username" },
+  "setPassword": { "message": "Set Password" },
+  "moveProxy": { "message": "Move Proxy" },
+  "movePattern": { "message": "Move Pattern" },
+  "deleteProxy": { "message": "Delete Proxy" },
+
+
+  "importFoxyProxyAccount": { "message": "Import Obside Account" },
+  "mainServer": { "message": "Main Server" },
+  "altServer": { "message": "Alt Server" },
+
+  "importProxyList": { "message": "Import Proxy List" },
+  "importFromURL": { "message": "Import from URL" },
+  "importFromOlderVersions": { "message": "Import from older versions" },
+
+  "tester": { "message": "Pattern Tester" },
+  "testerDescription": { "message": "Test a pattern against URLs" },
+  "test": { "message": "Test" },
+  "result": { "message": "Result" },
+  "back": { "message": "Back" },
+  "invalidPatternError": { "message": "Invalid Pattern" },
+  "schemeError": { "message": "'*' in scheme must be the only character" },
+  "unsupportedSchemeError": { "message": "Unsupported scheme" },
+  "hostError": { "message": "'*' in host must be at the start" },
+  "hostDotError": { "message": "'*' in host must be the only character or be followed by '.'" },
+  "portError": { "message": "Host must not include a port number" },
+  "proxyByPatternsDescription": { "message": "Test a URL against active proxy patterns" },
+
+  "log": { "message": "Log" },
+  "notAvailable": { "message": "Proxy data is not available on Chrome (Firefox Only)" },
+  "getAssociatedDomains": { "message": "Get Associated Domains" },
+  "documentUrl": { "message": "Document URL" },
+  "url": { "message": "URL" },
+  "method": { "message": "Method" },
+  "proxy": { "message": "Proxy" },
+  "time": { "message": "Time" },
+
+  "about": { "message": "About" },
+  "error": { "message": "There was an error with the operation" },
+  "export": { "message": "Export" },
+  "fileTypeError": { "message": "Unsupported File Format" },
+  "help": { "message": "Help" },
+  "import": { "message": "Import" },
+  "options": { "message": "Options" },
+  "save": { "message": "Save" }
+}

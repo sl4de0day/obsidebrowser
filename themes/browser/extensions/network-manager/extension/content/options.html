@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="options">FoxyProxy </title>
+  <link href="../image/icon.svg" rel="icon" type="image/png">
+  <link href="options.css" rel="stylesheet">
+  <script src="options.js" type="module"></script>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="nav">
+    <nav>
+      <img src="../image/icon.svg" alt="">
+      <label data-i18n="options"><input type="radio" name="nav" id="nav3" checked></label>
+      <label data-i18n="proxies"><input type="radio" name="nav" id="nav4"></label>
+      <label data-i18n="import"><input type="radio" name="nav" id="nav5"></label>
+      <label data-i18n="tester"><input type="radio" name="nav" id="nav6"></label>
+      <label data-i18n="log"><input type="radio" name="nav" id="nav7"></label>
+      <label data-i18n="help"><input type="radio" name="nav" id="nav1"></label>
+      <label data-i18n="about"><input type="radio" name="nav" id="nav2"></label>
+    </nav>
+  </div>
+
+  <div class="progress-bar"></div>
+
+  <article>
+    <!-- spinner -->
+    <div class="spinner"></div>
+
+    <!-- popup -->
+    <div class="popup">
+      <span>✕</span>
+      <textarea autocomplete="off" spellcheck="false"></textarea>
+      <select class="popup-log-proxy" autocomplete="off">
+        <option value="" data-i18n="proxy" disabled selected></option>
+      </select>
+      <select class="popup-test-proxy" autocomplete="off">
+        <option value="" data-i18n="proxy" disabled selected></option>
+      </select>
+      <select class="popup-server" autocomplete="off">
+        <option value="" data-i18n="server" disabled selected></option>
+        <option value="https://api.ipify.org/">ipify.org</option>
+        <option value="https://checkip.amazonaws.com/">amazonaws.com (Amazon)</option>
+        <option value="https://icanhazip.com/">icanhazip.com (Cloudflare)</option>
+        <option value="https://ident.me/">ident.me</option>
+        <option value="https://www.l2.io/ip">l2.io</option>
+        <option value="https://www.trackip.net/ip">trackip.net</option>
+        <option value="https://myip.dnsomatic.com/">dnsomatic.com</option>
+        <hr>
+        <option value="https://getfoxyproxy.org/geoip/?raw=1">getfoxyproxy.org</option>
+        <option value="https://ipinfo.io/ip">ipinfo.io</option>
+        <!-- <option value="https://ifconfig.co/">ifconfig.co</option> -->
+        <option value="https://ipecho.net/plain">ipecho.net</option>
+        <option value="https://whatismyip.akamai.com/">akamai.com</option>
+        <option value="https://myexternalip.com/raw">myexternalip.com</option>
+      </select>
+    </div>
+
+    <!-- Help/About -->
+    <section><iframe src="help.html"></iframe></section>
+    <section><iframe src="about.html"></iframe></section>
+
+    <!-- user options -->
+    <section class="options">
+      <fieldset>
+        <div class="buttons">
+          <label class="button flat" data-i18n="import"><input type="file" id="file" accept=".json"></label>
+          <button type="button" id="export" class="flat" data-i18n="export"></button>
+          <button type="button" class="flat" data-i18n="deleteBrowsingData" id="deleteBrowsingData"></button>
+          <button type="button" class="flat" data-i18n="restoreDefaults"></button>
+        </div>
+
+        <label data-i18n="enableSync"><input type="checkbox" id="sync"></label>
+        <p class="description" data-i18n="enableSyncDescription"></p>
+
+        <label data-i18n="autoBackup"><input type="checkbox" id="autoBackup"></label>
+        <p class="description" data-i18n="autoBackupDescription"></p>
+
+        <div class="columns">
+          <label data-i18n="theme" data-link="#theme"></label>
+          <select id="theme">
+            <option value="" data-i18n="default"></option>
+            <option>moonlight</option>
+            <option>moonlight alt</option>
+          </select>
+          <p class="description" data-i18n="themeDescription"></p>
+
+          <!-- default is true (checked) -->
+          <label class="firefox" data-i18n="toggleWebRTC"><input type="checkbox" id="toggleWebRTC" checked></label>
+          <p class="description firefox" data-i18n="toggleWebRTCDescription"></p>
+
+          <label data-i18n="limitWebRTC" data-link="#limit-WebRTC"></label>
+          <select id="limitWebRTC">
+            <option value="default" data-i18n="default"></option>
+            <option value="default_public_interface_only" data-i18n="publicInterfaceOnly"></option>
+            <option value="default_public_and_private_interfaces" data-i18n="publicPrivateInterfaces"></option>
+            <option value="disable_non_proxied_udp" data-i18n="disableNonProxied"></option>
+            <option value="proxy_only" data-i18n="proxyOnly"></option>
+          </select>
+          <p class="description" data-i18n="limitWebRTCDescription"></p>
+        </div>
+
+        <label data-i18n="container" data-link="#container"></label>
+        <p class="description" data-i18n="containerDescription"></p>
+
+        <div class="container columns">
+
+          <label data-i18n="incognito"></label>
+          <select name="incognito">
+            <option value="">&nbsp;</option>
+          </select>
+
+          <label class="firefox" data-i18n="default"></label>
+          <select class="firefox" name="default">
+            <option value="">&nbsp;</option>
+          </select>
+
+          <label class="firefox"><span data-i18n="container"></span> 1</label>
+          <select class="firefox" name="container-1">
+            <option value="">&nbsp;</option>
+          </select>
+
+          <label class="firefox"><span data-i18n="container"></span> 2</label>
+          <select class="firefox" name="container-2">
+            <option value="">&nbsp;</option>
+          </select>
+
+          <button type="button" class="flat slim firefox" data-i18n="add"></button>
+
+          <!-- container template -->
+          <template>
+            <label class="firefox"><span data-i18n="container"></span> </label>
+            <select class="firefox" name="container-">
+              <option value="">&nbsp;</option>
+            </select>
+          </template>
+        </div>
+
+        <!-- openShortcutSettings Firefox 137 -->
+        <label data-i18n="shortcut" data-link="#keyboard-shortcut"></label> <button type="button" class="plain shortcut-link" style="margin-left: 0.5em; display: none;">🔗</button>
+        <p class="description" data-i18n="shortcutDescription"></p>
+
+        <div class="commands columns">
+
+          <label data-i18n="setProxy"></label>
+          <select name="setProxy">
+            <option value="">&nbsp;</option>
+          </select>
+
+          <label data-i18n="setTabProxy"></label>
+          <select name="setTabProxy">
+            <option value="">&nbsp;</option>
+          </select>
+
+          <label data-i18n="includeHost"></label>
+          <select name="includeHost">
+            <option value="">&nbsp;</option>
+          </select>
+
+          <label data-i18n="excludeHost"></label>
+          <select name="excludeHost">
+            <option value="">&nbsp;</option>
+          </select>
+        </div>
+
+
+        <label data-i18n="globalExclude" data-link="#global-exclude"></label>
+        <p class="description" data-i18n="globalExcludeDescription"></p>
+        <textarea id="passthrough"></textarea>
+
+        <button type="submit" data-i18n="save"></button>
+
+        <img src="../image/help.svg" data-i18n="help|title" data-link="#options" alt="">
+      </fieldset>
+    </section>
+    <!-- /user options -->
+
+    <!-- proxy -->
+    <section class="proxy-section">
+      <fieldset>
+        <div class="proxy-head">
+          <button type="button" class="flat" data-i18n="add"></button>
+          <input type="text" class="filter" autocomplete="off" spellcheck="false" placeholder="filter">
+
+          <button type="button" class="flat" data-i18n="ping"></button>
+          <button type="button" class="flat" data-i18n="test"></button>
+          <button type="button" class="flat" data-i18n="getLocation"></button>
+        </div>
+
+        <div class="proxy-div"></div>
+
+        <div class="bulk-edit">
+          <input type="number" autocomplete="off" min="1" step="1">
+          <input type="number" autocomplete="off" min="1" step="1">
+          <input type="number" autocomplete="off" min="1" step="1">
+          <input type="text" autocomplete="off" spellcheck="false">
+
+          <select autocomplete="off">
+            <option value="" disabled selected data-i18n="bulkEdit"></option>
+            <option value="openAll" data-i18n="openAll"></option>
+            <option value="closeAll" data-i18n="closeAll"></option>
+            <hr>
+            <option value="deleteProxy" data-i18n="deleteProxy"></option>
+            <option value="moveProxy" data-i18n="moveProxy"></option>
+            <option value="movePattern" data-i18n="movePattern"></option>
+            <hr>
+            <option value="setTitle" data-i18n="setTitle"></option>
+            <option value="setType" data-i18n="setType"></option>
+            <option value="setPort" data-i18n="setPort"></option>
+            <option value="setUsername" data-i18n="setUsername"></option>
+            <option value="setPassword" data-i18n="setPassword"></option>
+
+          </select>
+        </div>
+
+        <button type="submit" data-i18n="save"></button>
+
+        <img src="../image/help.svg" data-i18n="help|title" data-link="#proxies" alt="">
+      </fieldset>
+
+      <!-- template -->
+      <template>
+        <details class="proxy" draggable="true">
+          <summary>
+            <span>🌎</span>
+            <span></span>
+            <input type="checkbox" class="toggle" data-id="active" checked>
+            <button type="button" class="plain" data-i18n="duplicate|title"><img src="../image/edit-copy.svg" alt=""></button>
+            <button type="button" class="plain" data-i18n="delete|title"><img src="../image/delete.svg" alt=""></button>
+            <button type="button" class="up plain">▲</button>
+            <button type="button" class="down plain">▼</button>
+          </summary>
+
+          <div class="content">
+
+            <div class="proxy-box">
+              <label data-i18n="title"></label>
+              <input type="text" data-id="title" spellcheck="false" placeholder="title">
+
+              <label data-i18n="hostname"></label>
+              <input type="text" data-id="hostname" spellcheck="false" placeholder="1.2.3.4, www.example.com">
+
+              <label data-i18n="type"></label>
+              <select data-id="type">
+                <optgroup data-i18n="type|label">
+                  <option value="http">HTTP</option>
+                  <option value="https">HTTPS</option>
+                  <option value="socks4">SOCKS4</option>
+                  <option value="socks5">SOCKS5</option>
+                  <option value="quic">QUIC</option>
+                  <option value="pac" data-flag="🌎">PAC</option>
+                  <option value="direct" data-hostname="DIRECT" data-flag="⮕">DIRECT</option>
+                </optgroup>
+
+                <optgroup data-i18n="server|label">
+                  <!-- By default v2rayA will open 20170 (socks5), 20171 (http), 20172 (http with shunt rules) ports through the core -->
+                  <option value="http" data-hostname="127.0.0.1" data-port="8080" data-flag="🖥️">Burp</option>
+                  <option value="http" data-hostname="127.0.0.1" data-port="8118" data-flag="🖥️">Privoxy</option>
+                  <option value="socks5" data-hostname="127.0.0.1" data-port="60351" data-flag="🖥️">Psiphon</option>
+                  <option value="socks5" data-hostname="127.0.0.1" data-port="1080" data-flag="🖥️">Shadowsocks</option>
+                  <option value="socks5" data-hostname="127.0.0.1" data-port="9050" data-flag="🖥️">TOR</option>
+
+                  <option value="http" data-hostname="127.0.0.1" data-port="2081" data-flag="🖥️">NekoRay HTTP</option>
+                  <option value="socks5" data-hostname="127.0.0.1" data-port="2080" data-flag="🖥️">NekoRay SOCKS5</option>
+
+                  <option value="http" data-hostname="127.0.0.1" data-port="20171" data-flag="🖥️">V2RayA HTTP</option>
+                  <option value="http" data-hostname="127.0.0.1" data-port="20172" data-flag="🖥️">V2RayA HTTP (with Rule)</option>
+                  <option value="socks5" data-hostname="127.0.0.1" data-port="20170" data-flag="🖥️">V2RayA SOCKS5</option>
+                </optgroup>
+              </select>
+
+              <label data-i18n="port"></label>
+              <input type="text" data-id="port" placeholder="3128">
+
+              <label data-i18n="country"></label>
+              <select data-id="cc">
+                <option value="">&nbsp;</option>
+                <option value="AF">🇦🇫 Afghanistan</option>
+                <option value="AL">🇦🇱 Albania</option>
+                <option value="DZ">🇩🇿 Algeria</option>
+                <option value="AS">🇦🇸 American Samoa</option>
+                <option value="AD">🇦🇩 Andorra</option>
+                <option value="AO">🇦🇴 Angola</option>
+                <option value="AI">🇦🇮 Anguilla</option>
+                <option value="AQ">🇦🇶 Antarctica</option>
+                <option value="AG">🇦🇬 Antigua and Barbuda</option>
+                <option value="AR">🇦🇷 Argentina</option>
+                <option value="AM">🇦🇲 Armenia</option>
+                <option value="AW">🇦🇼 Aruba</option>
+                <option value="AU">🇦🇺 Australia</option>
+                <option value="AT">🇦🇹 Austria</option>
+                <option value="AZ">🇦🇿 Azerbaijan</option>
+                <option value="AX">🇦🇽 Åland Islands</option>
+                <option value="BS">🇧🇸 Bahamas</option>
+                <option value="BH">🇧🇭 Bahrain</option>
+                <option value="BD">🇧🇩 Bangladesh</option>
+                <option value="BB">🇧🇧 Barbados</option>
+                <option value="BY">🇧🇾 Belarus</option>
+                <option value="BE">🇧🇪 Belgium</option>
+                <option value="BZ">🇧🇿 Belize</option>
+                <option value="BJ">🇧🇯 Benin</option>
+                <option value="BM">🇧🇲 Bermuda</option>
+                <option value="BT">🇧🇹 Bhutan</option>
+                <option value="BO">🇧🇴 Bolivia, Plurinational State of</option>
+                <option value="BQ">🇧🇶 Bonaire, Sint Eustatius and Saba</option>
+                <option value="BA">🇧🇦 Bosnia and Herzegovina</option>
+                <option value="BW">🇧🇼 Botswana</option>
+                <option value="BV">🇧🇻 Bouvet Island</option>
+                <option value="BR">🇧🇷 Brazil</option>
+                <option value="IO">🇮🇴 British Indian Ocean Territory</option>
+                <option value="VG">🇻🇬 British Virgin Islands</option>
+                <option value="BN">🇧🇳 Brunei Darussalam</option>
+                <option value="BG">🇧🇬 Bulgaria</option>
+                <option value="BF">🇧🇫 Burkina Faso</option>
+                <option value="BI">🇧🇮 Burundi</option>
+                <option value="CV">🇨🇻 Cabo Verde</option>
+                <option value="KH">🇰🇭 Cambodia</option>
+                <option value="CM">🇨🇲 Cameroon</option>
+                <option value="CA">🇨🇦 Canada</option>
+                <option value="KY">🇰🇾 Cayman Islands</option>
+                <option value="CF">🇨🇫 Central African Republic</option>
+                <option value="TD">🇹🇩 Chad</option>
+                <option value="CL">🇨🇱 Chile</option>
+                <option value="CN">🇨🇳 China</option>
+                <option value="CX">🇨🇽 Christmas Island</option>
+                <option value="CC">🇨🇨 Cocos [Keeling] Islands</option>
+                <option value="CO">🇨🇴 Colombia</option>
+                <option value="KM">🇰🇲 Comoros</option>
+                <option value="CG">🇨🇬 Congo, Republic of the</option>
+                <option value="CD">🇨🇩 Congo, the Democratic Republic of the</option>
+                <option value="CK">🇨🇰 Cook Islands</option>
+                <option value="CR">🇨🇷 Costa Rica</option>
+                <option value="HR">🇭🇷 Croatia</option>
+                <option value="CU">🇨🇺 Cuba</option>
+                <option value="CW">🇨🇼 Curaçao</option>
+                <option value="CY">🇨🇾 Cyprus</option>
+                <option value="CZ">🇨🇿 Czechia</option>
+                <option value="TL">🇹🇱 Democratic Republic of Timor-Leste</option>
+                <option value="DK">🇩🇰 Denmark</option>
+                <option value="DJ">🇩🇯 Djibouti</option>
+                <option value="DM">🇩🇲 Dominica</option>
+                <option value="DO">🇩🇴 Dominican Republic</option>
+                <option value="EC">🇪🇨 Ecuador</option>
+                <option value="EG">🇪🇬 Egypt</option>
+                <option value="SV">🇸🇻 El Salvador</option>
+                <option value="GQ">🇬🇶 Equatorial Guinea</option>
+                <option value="ER">🇪🇷 Eritrea</option>
+                <option value="EE">🇪🇪 Estonia</option>
+                <option value="SZ">🇸🇿 Eswatini</option>
+                <option value="ET">🇪🇹 Ethiopia</option>
+                <option value="EU">🇪🇺 European Union</option>
+                <option value="FK">🇫🇰 Falkland Islands (Malvinas)</option>
+                <option value="FO">🇫🇴 Faroe Islands</option>
+                <option value="FJ">🇫🇯 Fiji</option>
+                <option value="FI">🇫🇮 Finland</option>
+                <option value="FR">🇫🇷 France</option>
+                <option value="GF">🇬🇫 French Guiana</option>
+                <option value="PF">🇵🇫 French Polynesia</option>
+                <option value="TF">🇹🇫 French Southern Territories</option>
+                <option value="GA">🇬🇦 Gabon</option>
+                <option value="GM">🇬🇲 Gambia</option>
+                <option value="GE">🇬🇪 Georgia</option>
+                <option value="DE">🇩🇪 Germany</option>
+                <option value="GH">🇬🇭 Ghana</option>
+                <option value="GI">🇬🇮 Gibraltar</option>
+                <option value="GR">🇬🇷 Greece</option>
+                <option value="GL">🇬🇱 Greenland</option>
+                <option value="GD">🇬🇩 Grenada</option>
+                <option value="GP">🇬🇵 Guadeloupe</option>
+                <option value="GU">🇬🇺 Guam</option>
+                <option value="GT">🇬🇹 Guatemala</option>
+                <option value="GG">🇬🇬 Guernsey</option>
+                <option value="GN">🇬🇳 Guinea</option>
+                <option value="GW">🇬🇼 Guinea-Bissau</option>
+                <option value="GY">🇬🇾 Guyana</option>
+                <option value="HT">🇭🇹 Haiti</option>
+                <option value="HM">🇭🇲 Heard Island and McDonald Islands</option>
+                <option value="HN">🇭🇳 Honduras</option>
+                <option value="HK">🇭🇰 Hong Kong</option>
+                <option value="HU">🇭🇺 Hungary</option>
+                <option value="IS">🇮🇸 Iceland</option>
+                <option value="IN">🇮🇳 India</option>
+                <option value="ID">🇮🇩 Indonesia</option>
+                <option value="IR">🇮🇷 Iran, Islamic Republic Of</option>
+                <option value="IQ">🇮🇶 Iraq</option>
+                <option value="IE">🇮🇪 Ireland</option>
+                <option value="IM">🇮🇲 Isle of Man</option>
+                <option value="IL">🇮🇱 Israel</option>
+                <option value="IT">🇮🇹 Italy</option>
+                <option value="CI">🇨🇮 Ivory Coast (Côte d'Ivoire)</option>
+                <option value="JM">🇯🇲 Jamaica</option>
+                <option value="JP">🇯🇵 Japan</option>
+                <option value="JE">🇯🇪 Jersey</option>
+                <option value="JO">🇯🇴 Jordan (Hashemite Kingdom of Jordan)</option>
+                <option value="KZ">🇰🇿 Kazakhstan</option>
+                <option value="KE">🇰🇪 Kenya</option>
+                <option value="KI">🇰🇮 Kiribati</option>
+                <option value="XK">🇽🇰 Kosovo</option>
+                <option value="KW">🇰🇼 Kuwait</option>
+                <option value="KG">🇰🇬 Kyrgyzstan</option>
+                <option value="LA">🇱🇦 Laos (Lao People's Democratic Republic)</option>
+                <option value="LV">🇱🇻 Latvia</option>
+                <option value="LB">🇱🇧 Lebanon</option>
+                <option value="LS">🇱🇸 Lesotho</option>
+                <option value="LR">🇱🇷 Liberia</option>
+                <option value="LY">🇱🇾 Libya</option>
+                <option value="LI">🇱🇮 Liechtenstein</option>
+                <option value="LT">🇱🇹 Lithuania</option>
+                <option value="LU">🇱🇺 Luxembourg</option>
+                <option value="MO">🇲🇴 Macao</option>
+                <option value="MG">🇲🇬 Madagascar</option>
+                <option value="MW">🇲🇼 Malawi</option>
+                <option value="MY">🇲🇾 Malaysia</option>
+                <option value="MV">🇲🇻 Maldives</option>
+                <option value="ML">🇲🇱 Mali</option>
+                <option value="MT">🇲🇹 Malta</option>
+                <option value="MH">🇲🇭 Marshall Islands</option>
+                <option value="MQ">🇲🇶 Martinique</option>
+                <option value="MR">🇲🇷 Mauritania</option>
+                <option value="MU">🇲🇺 Mauritius</option>
+                <option value="YT">🇾🇹 Mayotte</option>
+                <option value="MX">🇲🇽 Mexico</option>
+                <option value="FM">🇫🇲 Micronesia, Federated States of</option>
+                <option value="MD">🇲🇩 Moldova, Republic of</option>
+                <option value="MC">🇲🇨 Monaco</option>
+                <option value="MN">🇲🇳 Mongolia</option>
+                <option value="ME">🇲🇪 Montenegro</option>
+                <option value="MS">🇲🇸 Montserrat</option>
+                <option value="MA">🇲🇦 Morocco</option>
+                <option value="MZ">🇲🇿 Mozambique</option>
+                <option value="MM">🇲🇲 Myanmar</option>
+                <option value="NA">🇳🇦 Namibia</option>
+                <option value="NR">🇳🇷 Nauru</option>
+                <option value="NP">🇳🇵 Nepal</option>
+                <option value="NL">🇳🇱 Netherlands</option>
+                <option value="NC">🇳🇨 New Caledonia</option>
+                <option value="NZ">🇳🇿 New Zealand</option>
+                <option value="NI">🇳🇮 Nicaragua</option>
+                <option value="NE">🇳🇪 Niger</option>
+                <option value="NG">🇳🇬 Nigeria</option>
+                <option value="NU">🇳🇺 Niue</option>
+                <option value="NF">🇳🇫 Norfolk Island</option>
+                <option value="KP">🇰🇵 North Korea</option>
+                <option value="MK">🇲🇰 North Macedonia</option>
+                <option value="MP">🇲🇵 Northern Mariana Islands</option>
+                <option value="NO">🇳🇴 Norway</option>
+                <option value="OM">🇴🇲 Oman</option>
+                <option value="PK">🇵🇰 Pakistan</option>
+                <option value="PW">🇵🇼 Palau</option>
+                <option value="PS">🇵🇸 Palestine</option>
+                <option value="PA">🇵🇦 Panama</option>
+                <option value="PG">🇵🇬 Papua New Guinea</option>
+                <option value="PY">🇵🇾 Paraguay</option>
+                <option value="PE">🇵🇪 Peru</option>
+                <option value="PH">🇵🇭 Philippines</option>
+                <option value="PN">🇵🇳 Pitcairn Islands</option>
+                <option value="PL">🇵🇱 Poland</option>
+                <option value="PT">🇵🇹 Portugal</option>
+                <option value="PR">🇵🇷 Puerto Rico</option>
+                <option value="QA">🇶🇦 Qatar</option>
+                <option value="LT">🇱🇹 Republic of Lithuania</option>
+                <option value="RO">🇷🇴 Romania</option>
+                <option value="RU">🇷🇺 Russia (Russian Federation)</option>
+                <option value="RW">🇷🇼 Rwanda</option>
+                <option value="RE">🇷🇪 Réunion</option>
+                <option value="BL">🇧🇱 Saint Barthélemy</option>
+                <option value="SH">🇸🇭 Saint Helena</option>
+                <option value="LC">🇱🇨 Saint Lucia</option>
+                <option value="MF">🇲🇫 Saint Martin (French part)</option>
+                <option value="PM">🇵🇲 Saint Pierre and Miquelon</option>
+                <option value="VC">🇻🇨 Saint Vincent and the Grenadines</option>
+                <option value="WS">🇼🇸 Samoa</option>
+                <option value="SM">🇸🇲 San Marino</option>
+                <option value="SA">🇸🇦 Saudi Arabia</option>
+                <option value="SN">🇸🇳 Senegal</option>
+                <option value="RS">🇷🇸 Serbia</option>
+                <option value="SC">🇸🇨 Seychelles</option>
+                <option value="SL">🇸🇱 Sierra Leone</option>
+                <option value="SG">🇸🇬 Singapore</option>
+                <option value="SX">🇸🇽 Sint Maarten (Dutch part)</option>
+                <option value="SK">🇸🇰 Slovakia</option>
+                <option value="SI">🇸🇮 Slovenia</option>
+                <option value="SB">🇸🇧 Solomon Islands</option>
+                <option value="SO">🇸🇴 Somalia</option>
+                <option value="ZA">🇿🇦 South Africa</option>
+                <option value="GS">🇬🇸 South Georgia and the South Sandwich Islands</option>
+                <option value="KR">🇰🇷 South Korea</option>
+                <option value="SS">🇸🇸 South Sudan</option>
+                <option value="ES">🇪🇸 Spain</option>
+                <option value="LK">🇱🇰 Sri Lanka</option>
+                <option value="KN">🇰🇳 St Kitts and Nevis</option>
+                <option value="SD">🇸🇩 Sudan</option>
+                <option value="SR">🇸🇷 Suriname</option>
+                <option value="SJ">🇸🇯 Svalbard and Jan Mayen</option>
+                <option value="SE">🇸🇪 Sweden</option>
+                <option value="CH">🇨🇭 Switzerland</option>
+                <option value="SY">🇸🇾 Syria</option>
+                <option value="ST">🇸🇹 São Tomé and Príncipe</option>
+                <option value="TW">🇹🇼 Taiwan</option>
+                <option value="TJ">🇹🇯 Tajikistan</option>
+                <option value="TZ">🇹🇿 Tanzania</option>
+                <option value="TH">🇹🇭 Thailand</option>
+                <option value="TG">🇹🇬 Togo</option>
+                <option value="TK">🇹🇰 Tokelau</option>
+                <option value="TO">🇹🇴 Tonga</option>
+                <option value="TT">🇹🇹 Trinidad and Tobago</option>
+                <option value="TN">🇹🇳 Tunisia</option>
+                <option value="TM">🇹🇲 Turkmenistan</option>
+                <option value="TC">🇹🇨 Turks and Caicos Islands</option>
+                <option value="TV">🇹🇻 Tuvalu</option>
+                <option value="TR">🇹🇷 Türkiye</option>
+                <option value="UM">🇺🇲 U.S. Minor Outlying Islands</option>
+                <option value="VI">🇻🇮 U.S. Virgin Islands</option>
+                <option value="UG">🇺🇬 Uganda</option>
+                <option value="UA">🇺🇦 Ukraine</option>
+                <option value="AE">🇦🇪 United Arab Emirates</option>
+                <option value="GB">🇬🇧 United Kingdom</option>
+                <option value="US">🇺🇸 United States of America</option>
+                <option value="UY">🇺🇾 Uruguay</option>
+                <option value="UZ">🇺🇿 Uzbekistan</option>
+                <option value="VU">🇻🇺 Vanuatu</option>
+                <option value="VA">🇻🇦 Vatican City</option>
+                <option value="VE">🇻🇪 Venezuela</option>
+                <option value="VN">🇻🇳 Vietnam</option>
+                <option value="WF">🇼🇫 Wallis and Futuna</option>
+                <option value="EH">🇪🇭 Western Sahara</option>
+                <option value="YE">🇾🇪 Yemen</option>
+                <option value="ZM">🇿🇲 Zambia</option>
+                <option value="ZW">🇿🇼 Zimbabwe</option>
+              </select>
+
+              <label data-i18n="username"></label>
+              <input type="text" data-id="username" spellcheck="false" placeholder="username">
+
+              <label data-i18n="city"></label>
+              <input type="text" data-id="city" spellcheck="false" placeholder="city">
+
+              <label data-i18n="password"></label>
+              <span class="password">
+                <input type="password" data-id="password" spellcheck="false" placeholder="****">
+                <button type="button" class="plain" data-i18n="togglePassword|title">👁</button>
+              </span>
+
+              <label data-i18n="color"></label>
+              <span>
+                <input type="color" data-id="color" value="#ff9900">
+                <button type="button" class="plain random" data-i18n="random|title">⟳</button>
+              </span>
+
+              <label data-type="pac">PAC URL</label>
+              <span class="pac">
+                <input type="url" data-id="pac" data-type="pac" placeholder="PAC URL">
+                <label class="pointer chrome" data-i18n="storeLocally"><input type="checkbox"></label>
+                <button type="button" class="flat slim" data-i18n="view"></button>
+              </span>
+
+              <label class="firefox" data-i18n="proxyDNS"></label>
+              <input type="checkbox" class="toggle firefox" data-id="proxyDNS" checked>
+
+
+            </div>
+
+            <div class="pattern-head">
+              <button type="button" class="flat slim plus" data-i18n="add|title">✚</button>
+              <span data-i18n="proxyByPatterns"></span>
+              <span data-i18n="title"></span>
+              <span data-i18n="pattern"></span>
+              <label data-i18n="import|title"><input type="file" accept=".json">📥</label>
+              <button type="button" class="plain" data-i18n="export|title">📤</button>
+            </div>
+
+            <div class="pattern-box"></div>
+          </div>
+        </details>
+
+        <div class="pattern-row">
+          <select>
+            <option value="" disabled selected>&nbsp;</option>
+            <option data-type="wildcard" value="*" data-i18n="all"></option>
+            <option data-type="wildcard" value="http://">HTTP</option>
+            <option data-type="wildcard" value="https://">HTTPS</option>
+            <option data-type="regex" value="^(http|ws)s?://[^.]+/" data-i18n="plainHost"></option>
+            <option data-type="regex" value="^(http|ws)s?://10(\.\d+){3}/">10.*.*.*</option>
+            <option data-type="regex" value="^(http|ws)s?://127(\.\d+){3}/">127.*.*.*</option>
+            <option data-type="regex" value="^(http|ws)s?://172\.16(\.\d+){2}/">172.16.*.*</option>
+            <option data-type="regex" value="^(http|ws)s?://192\.168(\.\d+){2}/">192.168.*.*</option>
+          </select>
+          <select>
+            <option value="include" data-i18n="include"></option>
+            <option value="exclude" data-i18n="exclude"></option>
+            <option value="tabProxy" data-i18n="tabProxy"></option>
+          </select>
+          <select>
+            <option value="wildcard" data-i18n="wildcard"></option>
+            <option value="match">Match</option>
+            <option value="regex">Reg Exp</option>
+          </select>
+          <input type="text" spellcheck="false" placeholder="title">
+          <input type="text" spellcheck="false" placeholder="://example.com/">
+          <input type="checkbox" class="toggle" checked>
+          <button type="button" class="plain" data-i18n="test|title"><img src="../image/beaker.svg" alt=""></button>
+          <button type="button" class="plain" data-i18n="delete|title"><img src="../image/delete.svg" alt=""></button>
+        </div>
+      </template>
+      <!-- /template -->
+    </section>
+    <!-- /proxy -->
+
+    <!-- import -->
+    <section class="import">
+      <fieldset>
+        <details class="import-account">
+          <summary data-i18n="importFoxyProxyAccount"></summary>
+          <div class="content">
+            <label data-i18n="username"></label>
+            <input id="username" type="text" spellcheck="false" placeholder="username">
+
+            <label data-i18n="password"></label>
+            <input id="password" type="password" spellcheck="false" placeholder="*****">
+            <button type="button" class="plain" data-i18n="togglePassword|title">👁</button>
+
+            <label data-i18n="options"></label>
+            <div class="account-options">
+              <select>
+                <option value="http">HTTP</option>
+                <option value="https">HTTPS</option>
+                <option value="socks5">SOCKS5</option>
+              </select>
+              <select>
+                <option value="hostname" data-i18n="hostname"></option>
+                <option value="ip">IP</option>
+              </select>
+              <select>
+                <option value="main" data-i18n="mainServer"></option>
+                <option value="alt" data-i18n="altServer"></option>
+              </select>
+            </div>
+
+
+            <button type="button" class="flat" data-i18n="import"></button>
+          </div>
+        </details>
+
+        <details class="import-from-url">
+          <summary data-i18n="importFromURL"></summary>
+          <div class="content">
+            <input type="url" placeholder="https://example.com/settings.json">
+            <button type="button" class="flat" data-i18n="import"></button>
+          </div>
+        </details>
+
+        <details class="import-proxy-list">
+          <summary data-i18n="importProxyList"></summary>
+          <div class="content">
+            <textarea></textarea>
+            <button type="button" class="flat" data-i18n="import"></button>
+          </div>
+        </details>
+
+        <details class="import-from-older">
+          <summary data-i18n="importFromOlderVersions"></summary>
+          <div class="content">
+            <label class="button flat" data-i18n="import"><input type="file" accept=".json, .xml"></label>
+          </div>
+        </details>
+
+
+        <img src="../image/help.svg" data-i18n="help|title" data-link="#import" alt="">
+        <!-- no need for submit SAVE button as all imports forward to Proxies Tab -->
+        <!-- <button type="submit" data-i18n="save"></button> -->
+      </fieldset>
+    </section>
+    <!-- /import -->
+
+    <!-- tester -->
+    <section class="tester">
+      <fieldset>
+
+        <h3 data-i18n="pattern" data-link="#pattern-guide"></h3>
+        <p class="description" data-i18n="testerDescription"></p>
+        <div class="tester-pattern">
+          <select>
+            <option value="wildcard" data-i18n="wildcard"></option>
+            <option value="match">Match</option>
+            <option value="regex">Reg Exp</option>
+          </select>
+          <input type="text" spellcheck="false" value="*://*.example.com/">
+        </div>
+        <pre contenteditable="true">https://example.com/
+https://example.org/
+http://help.example.com/
+https://help.example.com/abc
+https://google.com/ref=help.example.com</pre>
+
+        <div class="buttons">
+          <button type="button" class="flat" data-i18n="test"></button>
+          <button type="button" class="flat" data-i18n="back">◁ </button>
+        </div>
+
+
+        <h3 data-i18n="proxyByPatterns"></h3>
+        <p class="description" data-i18n="proxyByPatternsDescription"></p>
+        <input type="url" spellcheck="false" pattern="https?://.*" placeholder="https://example.com/abc">
+        <pre></pre>
+        <button type="button" class="flat proxyByPatterns" data-i18n="test"></button>
+
+        <img src="../image/help.svg" data-i18n="help|title" data-link="#pattern-tester" alt="">
+      </fieldset>
+    </section>
+    <!-- /tester -->
+
+
+    <!-- log -->
+    <section class="log">
+      <div class="domain">
+        <input type="text" autocomplete="off" spellcheck="false" placeholder="example.com">
+        <button type="button" class="flat slim" data-i18n="getAssociatedDomains"></button>
+      </div>
+
+      <table>
+        <caption class="firefox" data-i18n="notAvailable"></caption>
+        <thead>
+          <tr>
+            <th style="width: 1.5em;"></th>
+            <th style="width: 5em;" data-i18n="time"></th>
+            <th style="width: 1em;"><img src="../image/container.svg" alt=""></th>
+            <th style="width: 3em;" data-i18n="method"></th>
+            <th style="width: 3em;" data-i18n="type"></th>
+            <th data-i18n="documentURL" data-link="#log"></th>
+            <th data-i18n="url" data-link="#log"></th>
+            <th><span data-i18n="proxy"></span> <span data-i18n="title"></span></th>
+            <th style="width: 3em;" data-i18n="type"></th>
+            <th data-i18n="hostname"></th>
+            <th style="width: 3em;" data-i18n="port"></th>
+            <th data-i18n="pattern"></th>
+           </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <!-- template -->
+      <template>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </template>
+    </section>
+    <!-- /log -->
+
+  </article>
+</body>
+</html>
