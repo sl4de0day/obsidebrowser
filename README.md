@@ -2,11 +2,9 @@
   <img src="https://avatars.githubusercontent.com/u/300243181?s=60&v=41" width="60px" style="border-radius: 50%;" alt="Obside Browser Logo">
 
   ### `Obside Browser`
-</div>
 
-Experience the web like never before. A fast, private and secure way to explore the web
+  <p>Experience the web like never before. A fast, private and secure way to explore the web</p>
 
-<div align="center">
   <a href="https://obsidebrowser.com/">
     Website
   </a>
