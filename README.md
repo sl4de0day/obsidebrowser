@@ -14,7 +14,7 @@
   </a>
 </div>
 
-### `Project Status`
+### `!! Project Status !!`
 
 **Development of Obside Browser has been suspended, and support for the project is currently halted for the time being. As a result, active maintenance and future updates will be paused until further notice.**
 
