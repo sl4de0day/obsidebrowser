@@ -14,11 +14,15 @@
   </a>
 </div>
 
-### `!! Project Status !!`
+### <span style="color: #ffa500;">`!! Project Status !!`</span>
+
+<span style="color: #ffa500;">
 
 **Development of Obside Browser has been suspended, and support for the project is currently halted for the time being. As a result, active maintenance and future updates will be paused until further notice.**
 
 **Thank you to everyone who supported and showed interest in the project!**
+
+</span>
 
 ### `What is Obside?`
 
