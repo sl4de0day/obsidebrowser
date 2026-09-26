@@ -14,7 +14,7 @@
 
 > [!WARNING]
 > ### Project Status
-> **Development of Obside Browser has been suspended, and support for the project is currently halted for the time being. As a result, active maintenance and future updates will be paused until further notice.**
+> **Development of Obside Browser has been suspended as of July 2026, and support for the project is currently halted for the time being. As a result, active maintenance and future updates will be paused until further notice.**
 > 
 > **Thank you to everyone who supported and showed interest in the project!**
 
