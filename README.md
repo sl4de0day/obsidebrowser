@@ -1,5 +1,3 @@
-<img src="https://raw.githubusercontent.com/sl4de0day/obsidebrowser/refs/heads/master/themes/browser/branding/obside/default128.png" width="100px" align="left" alt="Obside Browser">
-
 ### `Obside Browser`
 
 **A fast, private and secure way to explore the web.**
@@ -31,6 +29,14 @@ Obside is a privacy-focused, open-source browser built with the aim of deliverin
 
 ---
 
+## **Screenshot**
+
+<p align="center">
+  <img src="assets/obsidescreenshot.png" width="100%" alt="Obside Browser Screenshot">
+</p>
+
+---
+
 ## **Features**
 
 - **Privacy Protection** — Built-in ad and tracker blocking, fingerprinting protection, and a privacy-focused browsing experience.
@@ -40,14 +46,6 @@ Obside is a privacy-focused, open-source browser built with the aim of deliverin
 - **Firefox Extensions** — Support for compatible standard WebExtensions.
 - **Automatic Updates** — Integrated update functionality.
 - **Data Import** — Import bookmarks, passwords, and browsing history from other browsers.
-
----
-
-## **Screenshots**
-
-<p align="center">
-  <img src="assets/obsidescreenshot.png" width="100%" alt="Obside Browser Screenshot">
-</p>
 
 ---
 
