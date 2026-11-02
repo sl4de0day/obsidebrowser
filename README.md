@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/sl4de0day/obsidebrowser/main/themes/browser/branding/obside/default128.png" width="100px" align="left" alt="Obside Browser">
+<img src="https://raw.githubusercontent.com/sl4de0day/obsidebrowser/refs/heads/master/themes/browser/branding/obside/default128.png" width="100px" align="left" alt="Obside Browser">
 
 ### `Obside Browser`
 
