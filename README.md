@@ -26,9 +26,9 @@ Obside is a privacy-focused, open-source browser built with the aim of deliverin
 
 ### Project Status
 
-Development of Obside Browser has been suspended as of July 2026. Active maintenance, support, and future updates are currently paused until further notice.
+'Development of Obside Browser has been suspended as of July 2026. Active maintenance, support, and future updates are currently paused until further notice.
 
-The website no longer provides downloads. However, the existing Windows installer remains available through GitHub Releases.
+The website no longer provides downloads. However, the existing Windows installer remains available through GitHub Releases.'
 
 ### Features
 
