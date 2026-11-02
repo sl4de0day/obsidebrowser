@@ -1,10 +1,4 @@
-<!--
-  This Source Code Form is subject to the terms of the Mozilla Public
-  License, v. 2.0. If a copy of the MPL was not distributed with this
-  file, You can obtain one at http://mozilla.org/MPL/2.0/.
--->
-
-<img src="https://avatars.githubusercontent.com/u/300243181?s=60&v=41" width="100px" align="left" alt="Obside Browser">
+<img src="https://raw.githubusercontent.com/sl4de0day/obsidebrowser/main/themes/browser/branding/obside/default128.png" width="100px" align="left" alt="Obside Browser">
 
 ### `Obside Browser`
 
@@ -24,11 +18,16 @@ Obside is a privacy-focused, open-source browser built with the aim of deliverin
 
 ---
 
-### Project Status
-
-'Development of Obside Browser has been suspended as of July 2026. Active maintenance, support, and future updates are currently paused until further notice.
-
-The website no longer provides downloads. However, the existing Windows installer remains available through GitHub Releases.'
+> [!WARNING]
+> ### Project Status: Suspended
+>
+> **Development of Obside Browser has been suspended as of July 2026.**
+>
+> Active development, maintenance, technical support, and future updates are currently paused until further notice.
+>
+> The official website no longer provides downloads. However, the existing Windows installer remains available through GitHub Releases.
+>
+> Thank you to everyone who supported Obside Browser and showed interest in the project.
 
 ### Features
 
