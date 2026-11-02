@@ -1,66 +1,77 @@
-<div align="center">
-  <img src="https://avatars.githubusercontent.com/u/300243181?s=60&v=41" alt="Obside Browser Logo" width="100">
+<!--
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+-->
 
-  # Obside Browser
+<img src="https://avatars.githubusercontent.com/u/300243181?s=60&v=41" width="100px" align="left" alt="Obside Browser">
 
-  **A fast, private and secure way to explore the web.**
+### `Obside Browser`
 
-  [Download](https://github.com/sl4de0day/obsidebrowser/releases/download/v150.1.0/obside-150.1.0.en-US.win64.installer.exe) · [Documentation](https://obsidebrowser.com/docs) · [Changelog](https://obsidebrowser.com/changelog) · [Website](https://obsidebrowser.com/) · [License](LICENSE)
+**A fast, private and secure way to explore the web.**
+
+Obside is a privacy-focused, open-source browser built with the aim of delivering a faster, safer, and more private browsing experience.
+
+<div>
+  <a href="https://github.com/sl4de0day/obsidebrowser/releases/download/v150.1.0/obside-150.1.0.en-US.win64.installer.exe">Download</a>
+  •
+  <a href="https://obsidebrowser.com">Website</a>
+  •
+  <a href="https://obsidebrowser.com/docs">Documentation</a>
+  •
+  <a href="https://obsidebrowser.com/changelog">Changelog</a>
 </div>
 
 ---
 
-**Obside Browser is a privacy-focused, open-source web browser designed around performance, privacy, and security.** Its goal is to provide a faster and safer browsing experience while giving users greater control over their digital lives.
+### Project Status
 
-Obside combines built-in privacy protections, security-focused features, and a modern browsing experience to reduce unnecessary tracking and make privacy more accessible.
+Development of Obside Browser has been suspended as of July 2026. Active maintenance, support, and future updates are currently paused until further notice.
 
-> **Project Status — Suspended**
->
-> Development of Obside Browser has been suspended as of July 2026. Active maintenance, support, and future updates are paused until further notice. The website no longer provides downloads, but the existing Windows installer remains available through GitHub Releases.
+The website no longer provides downloads. However, the existing Windows installer remains available through GitHub Releases.
 
-## Features
+### Features
 
-- **Privacy protection.** Built-in ad and tracker blocking, fingerprinting protection, and a privacy-focused approach to browsing.
-- **Performance.** Resource-conscious browsing designed to improve responsiveness and reduce unnecessary CPU and memory usage.
-- **Security.** Security-focused browsing protections, including defenses against malicious websites and phishing attempts.
-- **Open source.** Publicly accessible source code that allows the community to inspect, review, and contribute to the project.
-- **Firefox extension support.** Support for compatible standard WebExtensions.
-- **Built-in updates.** An update interface designed to check for and install available browser updates.
-- **Data import.** Options to import bookmarks, passwords, and browsing history from a previous browser.
+- **Privacy Protection** — Built-in ad and tracker blocking, fingerprinting protection, and a privacy-focused browsing experience.
+- **Performance** — Optimized resource management, faster page loading, and reduced CPU and memory usage.
+- **Security** — Built-in protection against malicious websites and phishing attempts.
+- **Open Source** — Publicly accessible source code for transparency, inspection, and community contributions.
+- **Firefox Extensions** — Support for compatible standard WebExtensions.
+- **Automatic Updates** — Integrated update functionality.
+- **Data Import** — Import bookmarks, passwords, and browsing history from other browsers.
 
-## Obside Premium
+### Obside Premium
 
-Obside Premium was designed as a subscription package intended to expand the browser's privacy, security, and communication capabilities.
+Obside Premium was designed to extend the browser's privacy, security, and communication capabilities.
 
-- **Advanced download security.** RAM-based protection and real-time malware scanning designed to inspect downloads before they are written to disk.
-- **Encrypted communication.** Enhanced video and audio communication with priority relays.
-- **VPN service.** A planned network of high-speed VPN servers with unlimited bandwidth.
-- **Encrypted file transfer.** End-to-end encrypted file sharing designed for transferring large files and folders.
+- **Advanced Download Security** — RAM-based protection and real-time malware scanning.
+- **Premium E2EE Communication** — Enhanced video and audio communication with priority relays.
+- **VPN Service** — Planned high-speed VPN infrastructure with unlimited bandwidth.
+- **Unlimited File Transfer** — End-to-end encrypted file sharing without file-size restrictions.
 
-*Premium feature availability is not guaranteed while development is suspended.*
+*Premium services are not guaranteed to be operational while development is suspended.*
 
-## Installation
+### Download
 
-Obside Browser is available for Windows through its existing GitHub release installer.
+Obside Browser is available for Windows (64-bit).
 
-**Download Obside Browser v150.1.0**
+- [**Obside Browser v150.1.0**](https://github.com/sl4de0day/obsidebrowser/releases/download/v150.1.0/obside-150.1.0.en-US.win64.installer.exe) — Windows 64-bit Installer
 
-[Download Windows Installer (.exe)](https://github.com/sl4de0day/obsidebrowser/releases/download/v150.1.0/obside-150.1.0.en-US.win64.installer.exe)
+Download the installer and follow the installation instructions.
 
-1. Download the Windows installer using the link above.
-2. Open the downloaded `.exe` file.
-3. Follow the installation instructions.
+> **Note:** This is an existing release. Since development is suspended, it may not include the latest security fixes.
 
-> **Note:** Development and maintenance are suspended. The installer is an existing release and may not include subsequent security fixes. Use caution when installing or using unsupported software.
+### Contributing
 
-## Contact
+Obside is an open-source project. Its source code is available on GitHub for anyone interested in exploring the project.
 
-For questions about the project or its documentation, contact:
+### Contact
 
-**Email:** [contact@obsidebrowser.com](mailto:contact@obsidebrowser.com)
+For questions regarding Obside Browser, documentation, or the project:
 
-**Website:** [obsidebrowser.com](https://obsidebrowser.com/)
+- **Email:** [contact@obsidebrowser.com](mailto:contact@obsidebrowser.com)
+- **Website:** [obsidebrowser.com](https://obsidebrowser.com)
 
-## License
+### License
 
-Refer to the repository's `LICENSE` file for licensing terms.
+See the [LICENSE](LICENSE) file for licensing information.
