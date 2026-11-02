@@ -50,6 +50,141 @@ Obside Premium was designed to extend the browser's privacy, security, and commu
 
 *Premium services are not guaranteed to be operational while development is suspended.*
 
+### Build from Source
+
+Obside is based on Mozilla Firefox. Developers who want to build Obside themselves will need the Firefox source code and the Obside customization files.
+
+**The Obside repository does not contain the complete Firefox source tree.** It contains project-specific files such as `assets`, `l10n`, `patches`, `scripts`, `settings`, and `themes/browser`. These files must be integrated into a compatible Firefox source checkout before building.
+
+#### Requirements
+
+- 64-bit Windows 10 or later, or a supported 64-bit Linux distribution.
+- Git and Python 3.
+- MozillaBuild on Windows.
+- At least 40 GB of free disk space on Windows or 30 GB on Linux.
+- Additional disk space and sufficient memory are recommended for a full optimized build.
+
+#### 1. Obtain the Firefox Source Code
+
+Use Mozilla's official build environment and bootstrap process to download Firefox and its required dependencies.
+
+**Windows**
+
+1. Install [MozillaBuild](https://firefox-source-docs.mozilla.org/setup/windows_build.html).
+2. Open the MozillaBuild shell.
+3. Download and run Mozilla's bootstrap script:
+
+```bash
+cd /c/
+mkdir mozilla-source
+cd mozilla-source
+
+wget https://raw.githubusercontent.com/mozilla-firefox/firefox/refs/heads/main/python/mozboot/bin/bootstrap.py
+
+python3 bootstrap.py
+```
+
+Follow the interactive setup and select the Firefox Desktop build configuration.
+
+**Linux**
+
+Install the required basic dependencies:
+
+```bash
+sudo apt update
+sudo apt install curl python3 python3-venv git make
+```
+
+Download and run the bootstrap script:
+
+```bash
+mkdir -p ~/mozilla-source
+cd ~/mozilla-source
+
+curl -LO https://raw.githubusercontent.com/mozilla-firefox/firefox/refs/heads/main/python/mozboot/bin/bootstrap.py
+
+python3 bootstrap.py
+```
+
+Follow the interactive setup to download and configure the Firefox source code.
+
+#### 2. Obtain the Obside Repository
+
+Clone the Obside repository separately:
+
+```bash
+git clone https://github.com/sl4de0day/obsidebrowser.git
+```
+
+The repository contains the following project-specific directories:
+
+| Directory | Purpose |
+|---|---|
+| `assets/` | Project assets |
+| `l10n/` | Localization resources |
+| `patches/` | Firefox source patches |
+| `scripts/` | Build and development scripts |
+| `settings/` | Project configuration |
+| `themes/browser/` | Browser branding and themes |
+
+Integrate the required Obside files into the corresponding locations in your Firefox source tree. Review the patch files and scripts before applying them, and follow any instructions included with those files.
+
+> **Important:** Use a Firefox source revision compatible with the Obside release you are building. The latest Firefox source may not be compatible with older Obside patches or customizations.
+
+#### 3. Configure the Build
+
+Create a `.mozconfig` file in the root of your Firefox source directory.
+
+Example configuration:
+
+```bash
+# Application
+ac_add_options --enable-application=browser
+
+# Obside branding
+ac_add_options --with-branding=themes/browser/branding/obside
+
+# Build directory
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-obside
+
+# Build optimizations
+ac_add_options --enable-optimize
+ac_add_options --disable-debug
+ac_add_options --disable-tests
+```
+
+Adjust the configuration according to your environment and the Firefox source revision you are using.
+
+#### 4. Build Obside
+
+From the Firefox source directory, run:
+
+```bash
+./mach build
+```
+
+The first build can take a considerable amount of time depending on your hardware and available resources.
+
+#### 5. Run Your Build
+
+After a successful build, launch your locally built browser:
+
+```bash
+./mach run
+```
+
+The build output is generally located in:
+
+```text
+obj-obside/dist/bin/
+```
+
+For more detailed platform-specific instructions, refer to Mozilla's official documentation:
+
+- [Building Firefox on Windows](https://firefox-source-docs.mozilla.org/setup/windows_build.html)
+- [Building Firefox on Linux](https://firefox-source-docs.mozilla.org/setup/linux_build.html)
+- [Firefox Build Configuration](https://firefox-source-docs.mozilla.org/setup/configuring_build_options.html)
+
 ### Download
 
 Obside Browser is available for Windows (64-bit).
