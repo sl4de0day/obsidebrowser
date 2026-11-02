@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/sl4de0day/obsidebrowser/refs/heads/master/themes/browser/branding/obside/default128.png" width="100px" align="left" alt="Obside Browser">
+ <img src="https://raw.githubusercontent.com/sl4de0day/obsidebrowser/refs/heads/master/themes/browser/branding/obside/default128.png" width="100px" align="left" alt="Obside Browser">
 
 ### `Obside Browser`
 
@@ -66,10 +66,29 @@ Obside is an open-source project. Its source code is available on GitHub for any
 
 ### Contact
 
-For questions regarding Obside Browser, documentation, or the project:
+For general inquiries:
 
 - **Email:** [contact@obsidebrowser.com](mailto:contact@obsidebrowser.com)
-- **Website:** [obsidebrowser.com](https://obsidebrowser.com)
+
+For security vulnerabilities and responsible disclosure:
+
+- **Security:** [security@obsidebrowser.com](mailto:security@obsidebrowser.com)
+
+### Social
+
+<p>
+  <a href="https://x.com/obsidebrowser">
+    <img src="https://cdn.simpleicons.org/x/000000" width="24" alt="X">
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.instagram.com/obsidebrowser">
+    <img src="https://cdn.simpleicons.org/instagram/E4405F" width="24" alt="Instagram">
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.reddit.com/user/ObsideBrowser/">
+    <img src="https://cdn.simpleicons.org/reddit/FF4500" width="24" alt="Reddit">
+  </a>
+</p>
 
 ### License
 
