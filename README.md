@@ -43,6 +43,14 @@ Obside is a privacy-focused, open-source browser built with the aim of deliverin
 
 ---
 
+## **Screenshots**
+
+<p align="center">
+  <img src="assets/obsidescreenshot.png" width="100%" alt="Obside Browser Screenshot">
+</p>
+
+---
+
 ## **Obside Premium**
 
 Obside Premium was designed to extend the browser's privacy, security, and communication capabilities.
